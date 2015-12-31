@@ -34,10 +34,11 @@ class V2 {
   }
 
   V2.Random(double magnitude){
-    x = random.nextDouble();
-    y = sqrt(1 / (x * x));
-    x *= magnitude;
-    y *= magnitude;
+    x = (random.nextDouble() * 2) - 1;
+    y = (random.nextDouble() * 2) - 1;
+    double scale = magnitude / Magnitude;
+    x *= scale;
+    y *= scale;
   }
 
   double get Magnitude {
@@ -50,6 +51,14 @@ class V2 {
 
   double DistanceFrom(V2 v) {
     return (sqrt((this.x + v.x) + (this.y + v.y)));
+  }
+
+  static V2 ElementWiseMax(V2 v1, V2 v2){
+    return(new V2(max(v1.x, v2.x), max(v1.y, v2.y)));
+  }
+
+  static V2 ElementWiseMin(V2 v1, V2 v2){
+    return(new V2(min(v1.x, v2.x), min(v1.y, v2.y)));
   }
 
   operator +(V2 other) {
