@@ -3,16 +3,24 @@
 
 library Vector.V2;
 
-import 'dart:math' as math;
+import 'dart:math';
 
 /// 2-D Vector
 class V2 {
   double x;
   double y;
+  static final Random random = new Random();
 
-  V2(double x, double y) {
-    this.x = x;
-    this.y = y;
+  V2(this.x, this.y);
+  
+  V2.Both(double val){
+    x = val;
+    y = val;
+  }
+
+  V2.Int(int x, int y){
+    this.x = x.toDouble();
+    this.y = y.toDouble();
   }
 
   V2.Zero(){
@@ -25,8 +33,15 @@ class V2 {
   	y = 1.0;
   }
 
+  V2.Random(double magnitude){
+    x = random.nextDouble();
+    y = sqrt(1 / (x * x));
+    x *= magnitude;
+    y *= magnitude;
+  }
+
   double get Magnitude {
-    return (math.sqrt((x * x) + (y * y)));
+    return (sqrt((x * x) + (y * y)));
   }
 
   V2 get Unit {
@@ -34,7 +49,7 @@ class V2 {
   }
 
   double DistanceFrom(V2 v) {
-    return (math.sqrt((this.x + v.x) + (this.y + v.y)));
+    return (sqrt((this.x + v.x) + (this.y + v.y)));
   }
 
   operator +(V2 other) {
