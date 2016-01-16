@@ -15,21 +15,65 @@ class V{
   }
 
   V.All(int size, double val){
-    list = new List<double>(size);
-    list.fillRange(0, size, val);
+    list = new List<double>.filled(size, val);
   }
 
-  // V2.Zero(){
-  //   x = 0.0;
-  //   y = 0.0;
-  // }
+  V.Zero(int size):this.All(size, 0.0);
 
-  // V2.One(){
-  //   x = 1.0;
-  //   y = 1.0;
-  // }
+  V.One(int size):this.All(size, 1.0);
+
+  V.Random(int size){
+    list = new List<double>();
+    for(int i = 0; i<size; i++){
+      list.add(random.nextDouble());
+    }
+  }
 
   // Operator overloads
   operator [](int i) => list[i];
   operator []=(int i, double value) => list[i] = value;
+
+  operator +(V other){
+    List<double> _interimList = new List<double>(list.length);
+    for(int i = 0; i< list.length; i++){
+      _interimList[i] = list[i] + other[i];
+    }
+    return(new V(_interimList));
+  }
+
+  operator -(V other){
+    List<double> _interimList = new List<double>(list.length);
+    for(int i = 0; i< list.length; i++){
+      _interimList[i] = list[i] - other[i];
+    }
+    return(new V(_interimList));
+  }
+
+  operator *(double s){
+    List<double> _interimList = new List<double>(list.length);
+    for(int i = 0; i< list.length; i++){
+      _interimList[i] = list[i] * s;
+    }
+    return(new V(_interimList));
+  }
+
+  operator /(double s){
+    List<double> _interimList = new List<double>(list.length);
+    for(int i = 0; i< list.length; i++){
+      _interimList[i] = list[i] / s;
+    }
+    return(new V(_interimList));
+  }
+
+  // operator -(V2 other) {
+  //   return (new V2(x - other.x, y - other.y));
+  // }
+
+  // operator *(double other) {
+  //   return (new V2(x * other, y * other));
+  // }
+
+  // operator /(double other) {
+  //   return (new V2(x / other, y / other));
+  // }
 }
