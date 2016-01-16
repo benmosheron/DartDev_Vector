@@ -5,3 +5,4 @@
 library Vector;
 
 export 'src/V2.dart';
+export 'src/V.dart';

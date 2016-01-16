@@ -10,7 +10,7 @@ class V2 {
   double x;
   double y;
   static final Random random = new Random();
-
+  
   V2(this.x, this.y);
   
   V2.Both(double val){
@@ -40,7 +40,7 @@ class V2 {
     x *= scale;
     y *= scale;
   }
-
+  
   double get Magnitude {
     return (sqrt((x * x) + (y * y)));
   }
@@ -51,6 +51,10 @@ class V2 {
 
   double DistanceFrom(V2 v) {
     return (sqrt((this.x + v.x) + (this.y + v.y)));
+  }
+
+  V2 Negate(){
+    return(new V2(-x, -y));
   }
 
   static V2 ElementWiseMax(V2 v1, V2 v2){
