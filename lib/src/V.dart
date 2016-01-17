@@ -11,6 +11,7 @@ class V{
   static final Random random = new Random();
   List<double> list;
 
+  List<double> get Elements => list;
   int get length => list.length;
 
   //--------------//
@@ -41,27 +42,11 @@ class V{
   //---------//
 
   V ElementWiseMultiply(V v){
-    if(this.length != v.length) throw("Vectors have different lengths: [${this.length}], [${v.length}].");
-
-    List<double> _interimList = new List<double>();
-
-    for(int i = 0; i<length; i++){
-      _interimList.add(list[i] * v[i]);
-    }
-
-    return(new V(_interimList));
+    return(this._zip(v, (v1, v2) => v1 * v2));
   }
 
     V ElementWiseDivide(V v){
-    if(this.length != v.length) throw("Vectors have different lengths: [${this.length}], [${v.length}].");
-
-    List<double> _interimList = new List<double>();
-    
-    for(int i = 0; i<length; i++){
-      _interimList.add(list[i] / v[i]);
-    }
-
-    return(new V(_interimList));
+    return(this._zip(v, (v1, v2) => v1 / v2));
   }
 
   //--------------------//
@@ -90,47 +75,36 @@ class V{
   }
 
   operator /(double s){
-    List<double> _interimList = new List<double>(list.length);
-    for(int i = 0; i< list.length; i++){
-      _interimList[i] = list[i] / s;
-    }
-    return(new V(_interimList));
+    return(new V(list.map((e) => e / s).toList()));
   }
 
   //-----------------//
   // Private methods //
   //-----------------//
 
-  V _plusDouble(double x){
-    List<double> _interimList = new List<double>(list.length);
-    for(int i = 0; i< list.length; i++){
-      _interimList[i] = list[i] + x;
+    V _zip(V v, Function f){
+    if(this.length != v.length) throw("Vectors have different lengths: [${this.length}], [${v.length}].");
+    V _interimV = new V.Zero(length);
+    for(int i = 0; i<length; i++){
+      _interimV[i] = f(this[i], v[i]);
     }
-    return(new V(_interimList));
+    return(_interimV);
+  }
+
+  V _plusDouble(double x){
+    return(new V(list.map((e) => e + x).toList()));
   }
 
   V _plusV(V v){
-    List<double> _interimList = new List<double>(list.length);
-    for(int i = 0; i< list.length; i++){
-      _interimList[i] = list[i] + v[i];
-    }
-    return(new V(_interimList));
+    return(this._zip(v, (v1, v2) => v1 + v2));
   }
 
   V _minusDouble(double x){
-    List<double> _interimList = new List<double>(list.length);
-    for(int i = 0; i< list.length; i++){
-      _interimList[i] = list[i] - x;
-    }
-    return(new V(_interimList));
+    return(new V(list.map((e) => e - x).toList()));
   }
 
   V _minusV(V v){
-    List<double> _interimList = new List<double>(list.length);
-    for(int i = 0; i< list.length; i++){
-      _interimList[i] = list[i] - v[i];
-    }
-    return(new V(_interimList));
+    return(this._zip(v, (v1, v2) => v1 - v2));
   }
 
   //-----------------//

@@ -13,6 +13,12 @@ class M{
   //     { a20 a21 a22 }
   List<V> _m;
 
+  List<V> get Rows => _m;
+
+  //--------------//
+  // Constructors //
+  //--------------//
+
   M(List<V> vals){
     _m = vals;
   }
@@ -35,39 +41,61 @@ class M{
     }
   }
 
-  // Operator overloads
+  //---------//
+  // Methods //
+  //---------//
+
+  // M ElementWiseMultiply(M A){
+  //   return(new M(_m.map((v) => v.ElementWiseMultiply(V v))))
+  // }
+
+  // M ElementWiseDivide(M A){
+    
+  // }
+
+  //--------------------//
+  // Operator Overloads //
+  //--------------------//
+
   operator [](int i) => _m[i];
   operator []=(int i, V v) => _m[i] = v;
 
-  // operator +(V other){
-  //   List<double> _interimList = new List<double>(list.length);
-  //   for(int i = 0; i< list.length; i++){
-  //     _interimList[i] = list[i] + other[i];
-  //   }
-  //   return(new V(_interimList));
-  // }
+  operator +(var x){
+    if(x is M) return _plusMatrix(x);
+    else if (x is double) return _plusScalar(x);
+    else if (x is int) return _plusScalar(x.toDouble());
+  }
 
-  // operator -(V other){
-  //   List<double> _interimList = new List<double>(list.length);
-  //   for(int i = 0; i< list.length; i++){
-  //     _interimList[i] = list[i] - other[i];
-  //   }
-  //   return(new V(_interimList));
-  // }
+  //-----------------//
+  // Private Methods //
+  //-----------------//
 
-  // operator *(double s){
-  //   List<double> _interimList = new List<double>(list.length);
-  //   for(int i = 0; i< list.length; i++){
-  //     _interimList[i] = list[i] * s;
-  //   }
-  //   return(new V(_interimList));
-  // }
+  M _zip(M A, Function f){
+    M _interimM = new M.Zero(_m.length, this[0].length);
+    for(int i = 0; i<_m.length; i++){
+      _interimM[i] = f(this[i], A[i]);
+    }
+    return(_interimM);
+  }
 
-  // operator /(double s){
-  //   List<double> _interimList = new List<double>(list.length);
-  //   for(int i = 0; i< list.length; i++){
-  //     _interimList[i] = list[i] / s;
-  //   }
-  //   return(new V(_interimList));
-  // }
+  M _plusScalar(double c){
+    return(new M(_m.map((v) => v + c).toList()));
+  }
+
+  M _plusMatrix(M A){
+    return(this._zip(A, (t, a) => t + a));
+  }
+
+  M _minusScalar(double c){
+    return(new M(_m.map((v) => v - c).toList()));
+  }
+
+  M _minusMatrix(M A){
+    M _interimM = new M.Zero(_m.length, this[0].length);
+    for(int i = 0; i<_m.length; i++){
+      _interimM[i] = _m[i] - A[i];
+    }
+    return(_interimM);
+  }
+
 }
