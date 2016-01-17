@@ -263,6 +263,29 @@ void main() {
 
 group('M', () {
 
+    test('Test row get                                   ', (){
+      M O = new M.One(2,3);
+      var rows = O.Rows;
+      _expectTrue(rows is List<V> == true);
+      _expectTrue(rows.length == 2);
+      _expectTrue(rows.every((v) => v.length == 3));
+      _expectTrue(rows.every((v) => v == 1.0));
+    });
+
+    test('Test column get                                   ', (){
+      // { 1 3 1 }
+      // { 1 1 6 }
+      M O = new M.One(2,3);
+      O[0][1] = 3.0;
+      O[1][2] = 6.0;
+      var cols = O.Columns;
+      _expectTrue(cols is List<V> == true);
+      _expectTrue(cols.length == 3);
+      _expectTrue(cols.every((v) => v.length == 2));
+      _expectTrue(cols[1][0] == 3.0);
+      _expectTrue(cols[2][1] == 6.0);
+    });
+
     test('Test One                                       ', (){
       M O = new M.One(2, 3);
       expect(O[0][0] == 1.0, isTrue);
@@ -288,4 +311,8 @@ group('M', () {
 
   });
   
+}
+
+void _expectTrue(bool b){
+  expect(b, isTrue);
 }

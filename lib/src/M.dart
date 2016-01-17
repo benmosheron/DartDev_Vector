@@ -15,6 +15,17 @@ class M{
 
   List<V> get Rows => _m;
 
+  List<V> get Columns {
+   var c = new List<V>(nCols);
+   for(int i = 0; i < nCols; i++){
+      c[i] = new V(_m.map((r) => r[i]).toList());
+   }
+ }
+
+  int get nRows => _m.length;
+
+  int get nCols => _m[0].length;
+
   //--------------//
   // Constructors //
   //--------------//
@@ -71,6 +82,7 @@ class M{
   //-----------------//
 
   M _zip(M A, Function f){
+
     M _interimM = new M.Zero(_m.length, this[0].length);
     for(int i = 0; i<_m.length; i++){
       _interimM[i] = f(this[i], A[i]);
@@ -91,11 +103,7 @@ class M{
   }
 
   M _minusMatrix(M A){
-    M _interimM = new M.Zero(_m.length, this[0].length);
-    for(int i = 0; i<_m.length; i++){
-      _interimM[i] = _m[i] - A[i];
-    }
-    return(_interimM);
+    return(this._zip(A, (t, a) => t - a));
   }
 
 }
