@@ -72,9 +72,9 @@ class M{
     return(_zip(A, (t, a) => t.ElementWiseMultiply(a)));
   }
 
-  // M ElementWiseDivide(M A){
-    
-  // }
+  M ElementWiseDivide(M A){
+    return(_zip(A, (t, a) => t.ElementWiseDivide(a)));
+  }
 
   void Print({bool round: false}){
      _m.forEach((v) => v.Print(round: round));
@@ -106,9 +106,11 @@ class M{
   M _zip(M A, Function f){
 
     M _interimM = new M.Zero(_m.length, this[0].length);
+
     for(int i = 0; i<_m.length; i++){
       _interimM[i] = f(this[i], A[i]);
     }
+    
     return(_interimM);
   }
 
