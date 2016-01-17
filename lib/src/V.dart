@@ -49,9 +49,14 @@ class V{
     return(this._zip(v, (v1, v2) => v1 / v2));
   }
 
-  void Print(){
+  void Print({bool round: false}){
     String row = "";
-    Elements.forEach((e) => row += "$e ");
+    if(round){
+      Elements.forEach((e) => row += "${e.round()} ");
+    }
+    else{
+      Elements.forEach((e) => row += "$e ");
+    }
     print(row);
   }
 

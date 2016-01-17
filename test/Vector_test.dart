@@ -263,6 +263,14 @@ void main() {
 
 group('M', () {
 
+    // test('Test print                                     ', (){
+    //   M O = new M.FromArray(2, 3, [1.5, 2.0, 3.0, 4.0, 5.0, 6.0]);
+    //   print('printing array: ');
+    //   O.Print();
+    //   print('printing array with rounded values:');
+    //   O.Print(round: true);
+    // });
+
     test('Test row get                                   ', (){
       M O = new M.One(2,3);
       var rows = O.Rows;
@@ -308,6 +316,10 @@ group('M', () {
       expect(O[1][2] == 6.0, isTrue);
     });
 
+    test('Test FromArray fail                            ', (){
+      expect(() => new M.FromArray(1,1,[0,0]), throws);
+    });
+
 
     test('Test + M                                       ', (){
       M O1 = new M.One(2, 3);
@@ -322,17 +334,18 @@ group('M', () {
       expect(R.Rows.every((r) => r.Elements.every((e) => e == 2.0)), isTrue);
     });
 
-    test('Test print                                     ', (){
-      M O = new M.FromArray(2, 3, [1.0, 2.0, 3.0, 4.0, 5.0, 6.0]);
-      O.Print();
+    test('Test element wise multiply                     ', (){
+      M M1 = new M.FromArray(2, 3, [1.0, 2.0, 3.0, 4.0, 5.0, 6.0]);
+      M M2 = new M.FromArray(2, 3, [1.0, 2.0, 3.0, 4.0, 5.0, 6.0]);
+      // M MBad = new M.FromArray(3, 2, [1.0, 2.0, 3.0, 4.0, 5.0, 6.0]);
+      M R = M1.ElementWiseMultiply(M2);
+      expect(R[0][0] == 1.0, isTrue);
+      expect(R[0][1] == 4.0, isTrue);
+      expect(R[0][2] == 9.0, isTrue);
+      expect(R[1][0] == 16.0, isTrue);
+      expect(R[1][1] == 25.0, isTrue);
+      expect(R[1][2] == 36.0, isTrue);
     });
-
-    // test('Test element wise multiply                     ', (){
-    //   M O1 = new M.One(2, 3);
-    //   M O2 = new M.One(2, 3);
-    //   M R = O1 + O2;
-    //   expect(R.Rows.every((r) => r.Elements.every((e) => e == 2.0)), isTrue);
-    // });
 
   });
   
