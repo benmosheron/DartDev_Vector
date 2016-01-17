@@ -4,11 +4,18 @@
 library Vector.V;
 
 import 'dart:math';
+import 'M.dart';
 
 /// Vector with n elements
 class V{
   static final Random random = new Random();
   List<double> list;
+
+  int get length => list.length;
+
+  //--------------//
+  // Constructors //
+  //--------------//
 
   V(List<double> vals){
     list = vals;
@@ -48,12 +55,10 @@ class V{
     else if(x is int) return _minusDouble(x.toDouble());
   }
 
-  operator *(double s){
-    List<double> _interimList = new List<double>(list.length);
-    for(int i = 0; i< list.length; i++){
-      _interimList[i] = list[i] * s;
-    }
-    return(new V(_interimList));
+  operator *(var x){
+    if(x is double) return _multiplyByScalar(x);
+    else if(x is int) return _multiplyByScalar(x.toDouble());
+    else if(x is V) return _multiplyByVector(x);
   }
 
   operator /(double s){
@@ -98,5 +103,21 @@ class V{
       _interimList[i] = list[i] - v[i];
     }
     return(new V(_interimList));
-  }  
+  }
+
+  //-----------------//
+  // Mulitiplication //
+  //-----------------//
+
+  V _multiplyByScalar(double x){
+    return(new V(list.map((i) => i * x).toList()));
+  }
+
+  M _multiplyByVector(V v){
+    // this = t
+    // M = { t0 * v } = { t0v0, t0v1, t0v2 }
+    //     { t1 * v } = { t1v0, t1v1, t1v2 }
+    //     { t2 * v } = { t2v0, t2v1, t2v2 }
+    return(new M(list.map((i) => v * i).toList()));
+  }
 }

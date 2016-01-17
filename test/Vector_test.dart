@@ -152,7 +152,7 @@ void main() {
       expect(vd[2] == vi[2] && vd[2] == -7.0, isTrue);
     }); 
 
-    test('Test *                                         ', () {
+    test('Test * scalar                                  ', () {
       V v1 = new V.Zero(3);
       v1[0] = 1.0;
       v1[1] = 2.0;
@@ -167,6 +167,38 @@ void main() {
       expect(vb[0] == -9.0, isTrue);
       expect(vb[1] == -18.0, isTrue);
       expect(vb[2] == -27.0, isTrue);
+    });
+
+    test('Test * vector                                  ', () {
+      // { 1 }                 {  4  5  6  7 }
+      // { 2 } * { 4 5 6 7 } = {  8 10 12 14 }
+      // { 3 }                 { 12 15 18 21 }
+
+      V v1 = new V.Zero(3);
+      v1[0] = 1.0;
+      v1[1] = 2.0;
+      v1[2] = 3.0;
+
+      V v2 = new V.Zero(4);
+      v2[0] = 4.0;
+      v2[1] = 5.0;
+      v2[2] = 6.0;
+      v2[3] = 7.0;
+
+      M R = v1 * v2;
+
+      expect(R[0][0] == 4.0, isTrue);
+      expect(R[0][1] == 5.0, isTrue);
+      expect(R[0][2] == 6.0, isTrue);
+      expect(R[0][3] == 7.0, isTrue);
+      expect(R[1][0] == 8.0, isTrue);
+      expect(R[1][1] == 10.0, isTrue);
+      expect(R[1][2] == 12.0, isTrue);
+      expect(R[1][3] == 14.0, isTrue);
+      expect(R[2][0] == 12.0, isTrue);
+      expect(R[2][1] == 15.0, isTrue);
+      expect(R[2][2] == 18.0, isTrue);
+      expect(R[2][3] == 21.0, isTrue);
     });
 
     test('Test /                                         ', () {
