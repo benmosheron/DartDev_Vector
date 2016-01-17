@@ -334,6 +334,14 @@ group('M', () {
       expect(R.Rows.every((r) => r.Elements.every((e) => e == 2.0)), isTrue);
     });
 
+    test('Test mismatch                                  ', (){
+      M M1 = new M.One(2, 3);
+      M M2 = new M.One(3, 2);
+
+      expect(() => M1 + M2, throws);
+      expect(() => M1 - M2, throws);
+    });
+
     test('Test element wise multiply                     ', (){
       M M1 = new M.FromArray(2, 3, [1.0, 2.0, 3.0, 4.0, 5.0, 6.0]);
       M M2 = new M.FromArray(2, 3, [1.0, 2.0, 3.0, 4.0, 5.0, 6.0]);
@@ -347,11 +355,25 @@ group('M', () {
       expect(R[1][2] == 36.0, isTrue);
     });
 
+    test('Test element wise divide                       ', (){
+      M M1 = new M.FromArray(2, 3, [1.0, 8.0, 27.0, 64.0, 125.0, 216.0]);
+      M M2 = new M.FromArray(2, 3, [1.0, 2.0, 3.0, 4.0, 5.0, 6.0]);
+
+      M R = M1.ElementWiseDivide(M2);
+      expect(R[0][0] == 1.0, isTrue);
+      expect(R[0][1] == 4.0, isTrue);
+      expect(R[0][2] == 9.0, isTrue);
+      expect(R[1][0] == 16.0, isTrue);
+      expect(R[1][1] == 25.0, isTrue);
+      expect(R[1][2] == 36.0, isTrue);
+    });
+
     test('Test element wise mismatch                     ', (){
       M M1 = new M.One(2, 3);
       M M2 = new M.One(3, 2);
 
       expect(() => M1.ElementWiseMultiply(M2), throws);
+      expect(() => M1.ElementWiseDivide(M2), throws);
     });
 
   });
