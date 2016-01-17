@@ -80,6 +80,10 @@ class M{
      _m.forEach((v) => v.Print(round: round));
   }
 
+  M MapF(Function f){
+    return(new M(_m.map((v) => v.MapF(f)).toList()));
+  }
+
   //--------------------//
   // Operator Overloads //
   //--------------------//
@@ -110,7 +114,7 @@ class M{
     for(int i = 0; i<_m.length; i++){
       _interimM[i] = f(this[i], A[i]);
     }
-    
+
     return(_interimM);
   }
 

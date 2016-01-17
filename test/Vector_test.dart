@@ -255,6 +255,50 @@ void main() {
       expect(va[2] == 1.0, isTrue);
     });
 
+    test('Test resolve                                   ', (){
+      V v1 = new V([0.0, 1.0, 2.0]);
+      V v2 = new V([10.0, 11.0, 12.0]);
+
+      f1(x, y) => x + y;
+      f2(x, y) => x * y;
+
+      M R1 = v1.Resolve(v2, f1);
+      M R2 = v1.Resolve(v2, f2);
+
+      // Expected results
+      M E1 = new M.FromArray(3, 3, 
+        [10.0, 11.0, 12.0,
+         11.0, 12.0, 13.0,
+         12.0, 13.0, 14.0]);
+
+      M E2 = new M.FromArray(3, 3, 
+        [0.0, 0.0, 0.0,
+         10.0, 11.0, 12.0,
+         20.0, 22.0, 24.0]);
+
+      for(int i = 0; i < 3; i++){
+        for(int j = 0; j < 3; j++){
+          _expectTrue(R1[i][j] == E1[i][j]);
+          _expectTrue(R2[i][j] == E2[i][j]);
+        }
+      }
+    });
+
+    test('Test MapF                                      ', (){
+      V v1 = new V([0.0, 1.0, 2.0]);
+
+      f1(x) => x * x;
+
+      V vr = v1.MapF(f1);
+
+      // Expected results
+      V e1 = new V([0.0, 1.0, 4.0]);
+
+      for(int i = 0; i < 3; i++){
+        _expectTrue(vr[i] == e1[i]);
+      }
+    });
+
     // template   
     // test('Test ', () {
     //   expect(, isTrue);
@@ -376,8 +420,28 @@ group('M', () {
       expect(() => M1.ElementWiseDivide(M2), throws);
     });
 
+    test('Test MapF                                     ', (){
+      M M1 = new M.FromArray(2, 2, [1.0, 2.0, 3.0, 4.0]);
+
+      M E1 = new M.FromArray(2, 2, [10.0, 20.0, 30.0, 40.0]);
+
+      _expectMatrixEquality(M1, E1);
+    });
+
   });
   
+}
+
+void _expectMatrixEquality(M M1, M M2){
+  _expectTrue(M1.nRows == M2.nRows);
+  _expectTrue(M1.nCols == M2.nCols);
+
+      for(int i = 0; i < M1.nRows; i++){
+        for(int j = 0; j < M1.nCols; j++){
+          _expectTrue(M1[i][j] == M1[i][j]);
+          _expectTrue(M2[i][j] == M2[i][j]);
+        }
+      }
 }
 
 void _expectTrue(bool b){

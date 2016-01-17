@@ -60,6 +60,17 @@ class V{
     print(row);
   }
 
+  /// Create matrix of function results applied over two vectors
+  M Resolve(V v2, Function f){
+    // R = { f(t0, v0), f(t0, v1) }
+    //     { f(t1, v0), f(t1, v1) }
+    return(new M(list.map((e) => new V((v2.Elements.map((e2) => f(e, e2)).toList() ))).toList()));
+  }
+
+  V MapF(Function f){
+    return new V(Elements.map((e) => f(e)).toList());
+  }
+
   //--------------------//
   // Operator overloads //
   //--------------------//
