@@ -20,6 +20,7 @@ class M{
    for(int i = 0; i < nCols; i++){
       c[i] = new V(_m.map((r) => r[i]).toList());
    }
+   return(c);
  }
 
   int get nRows => _m.length;

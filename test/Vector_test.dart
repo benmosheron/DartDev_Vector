@@ -269,10 +269,10 @@ group('M', () {
       _expectTrue(rows is List<V> == true);
       _expectTrue(rows.length == 2);
       _expectTrue(rows.every((v) => v.length == 3));
-      _expectTrue(rows.every((v) => v == 1.0));
+      _expectTrue(rows.every((v) => v.Elements.every((e) => e == 1.0)));
     });
 
-    test('Test column get                                   ', (){
+    test('Test column get                                ', (){
       // { 1 3 1 }
       // { 1 1 6 }
       M O = new M.One(2,3);
