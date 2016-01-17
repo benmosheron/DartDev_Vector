@@ -49,9 +49,11 @@ class V{
     return(this._zip(v, (v1, v2) => v1 / v2));
   }
 
-  // void Print(){
-  //   Elements.forEach((e) => print("$e, "));
-  // }
+  void Print(){
+    String row = "";
+    Elements.forEach((e) => row += "$e ");
+    print(row);
+  }
 
   //--------------------//
   // Operator overloads //

@@ -76,9 +76,9 @@ class M{
     
   // }
 
-  // void Print(){
-  //    _m.forEach((v) => v.Print());
-  // }
+  void Print(){
+     _m.forEach((v) => v.Print());
+  }
 
   //--------------------//
   // Operator Overloads //

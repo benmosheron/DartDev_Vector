@@ -322,6 +322,11 @@ group('M', () {
       expect(R.Rows.every((r) => r.Elements.every((e) => e == 2.0)), isTrue);
     });
 
+    test('Test print                                     ', (){
+      M O = new M.FromArray(2, 3, [1.0, 2.0, 3.0, 4.0, 5.0, 6.0]);
+      O.Print();
+    });
+
     // test('Test element wise multiply                     ', (){
     //   M O1 = new M.One(2, 3);
     //   M O2 = new M.One(2, 3);
