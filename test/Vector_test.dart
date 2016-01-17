@@ -296,6 +296,19 @@ group('M', () {
       expect(O[1][2] == 1.0, isTrue);
     });
 
+    test('Test FromArray                                 ', (){
+      // 1 2 3
+      // 4 5 6
+      M O = new M.FromArray(2, 3, [1.0, 2.0, 3.0, 4.0, 5.0, 6.0]);
+      expect(O[0][0] == 1.0, isTrue);
+      expect(O[0][1] == 2.0, isTrue);
+      expect(O[0][2] == 3.0, isTrue);
+      expect(O[1][0] == 4.0, isTrue);
+      expect(O[1][1] == 5.0, isTrue);
+      expect(O[1][2] == 6.0, isTrue);
+    });
+
+
     test('Test + M                                       ', (){
       M O1 = new M.One(2, 3);
       M O2 = new M.One(2, 3);
@@ -308,6 +321,13 @@ group('M', () {
       M R = O1 + 1.0;
       expect(R.Rows.every((r) => r.Elements.every((e) => e == 2.0)), isTrue);
     });
+
+    // test('Test element wise multiply                     ', (){
+    //   M O1 = new M.One(2, 3);
+    //   M O2 = new M.One(2, 3);
+    //   M R = O1 + O2;
+    //   expect(R.Rows.every((r) => r.Elements.every((e) => e == 2.0)), isTrue);
+    // });
 
   });
   

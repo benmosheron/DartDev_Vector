@@ -53,16 +53,31 @@ class M{
     }
   }
 
+  M.FromArray(int n, int m, List<double> vals){
+    if(vals.length != n * m) throw("Number of values provided (${vals.length}) does not match input size ($n * $m).");
+    _m = new List<V>(n);
+    for(int i = 0; i < n; i++){
+      _m[i] = new V.Zero(m);
+      for(int j = 0; j < m; j++){
+        _m[i][j] = vals[(i * m) + j];
+      }
+    }
+  }
+
   //---------//
   // Methods //
   //---------//
 
-  // M ElementWiseMultiply(M A){
-  //   return(new M(_m.map((v) => v.ElementWiseMultiply(V v))))
-  // }
+  M ElementWiseMultiply(M A){
+    return(_zip(A, (t, a) => t.ElementWiseMultiply(a)));
+  }
 
   // M ElementWiseDivide(M A){
     
+  // }
+
+  // void Print(){
+  //    _m.forEach((v) => v.Print());
   // }
 
   //--------------------//
@@ -76,6 +91,12 @@ class M{
     if(x is M) return _plusMatrix(x);
     else if (x is double) return _plusScalar(x);
     else if (x is int) return _plusScalar(x.toDouble());
+  }
+
+  operator -(var x){
+    if(x is M) return _minusMatrix(x);
+    else if (x is double) return _minusScalar(x);
+    else if (x is int) return _minusScalar(x.toDouble());
   }
 
   //-----------------//

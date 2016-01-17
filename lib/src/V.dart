@@ -45,9 +45,13 @@ class V{
     return(this._zip(v, (v1, v2) => v1 * v2));
   }
 
-    V ElementWiseDivide(V v){
+  V ElementWiseDivide(V v){
     return(this._zip(v, (v1, v2) => v1 / v2));
   }
+
+  // void Print(){
+  //   Elements.forEach((e) => print("$e, "));
+  // }
 
   //--------------------//
   // Operator overloads //
