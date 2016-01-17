@@ -35,6 +35,34 @@ class V{
       list.add(random.nextDouble());
     }
   }
+  
+  //---------//
+  // Methods //
+  //---------//
+
+  V ElementWiseMultiply(V v){
+    if(this.length != v.length) throw("Vectors have different lengths: [${this.length}], [${v.length}].");
+
+    List<double> _interimList = new List<double>();
+
+    for(int i = 0; i<length; i++){
+      _interimList.add(list[i] * v[i]);
+    }
+
+    return(new V(_interimList));
+  }
+
+    V ElementWiseDivide(V v){
+    if(this.length != v.length) throw("Vectors have different lengths: [${this.length}], [${v.length}].");
+
+    List<double> _interimList = new List<double>();
+    
+    for(int i = 0; i<length; i++){
+      _interimList.add(list[i] / v[i]);
+    }
+
+    return(new V(_interimList));
+  }
 
   //--------------------//
   // Operator overloads //

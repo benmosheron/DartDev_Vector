@@ -218,6 +218,42 @@ void main() {
       expect(vb[2] == -1.25, isTrue);
     });
 
+    test('Test element wise multiply                     ', () {
+      V v1 = new V.Zero(3);
+      v1[0] = 3.0;
+      v1[1] = -4.0;
+      v1[2] = 5.0;
+
+      V v2 = new V.Zero(3);
+      v2[0] = 4.0;
+      v2[1] = 5.0;
+      v2[2] = 6.0;
+
+      V va = v1.ElementWiseMultiply(v2);
+
+      expect(va[0] == 12.0, isTrue);
+      expect(va[1] == -20.0, isTrue);
+      expect(va[2] == 30.0, isTrue);
+    });
+
+    test('Test element wise divide                       ', () {
+      V v1 = new V.Zero(3);
+      v1[0] = 3.0;
+      v1[1] = -4.0;
+      v1[2] = 5.0;
+
+      V v2 = new V.Zero(3);
+      v2[0] = 4.0;
+      v2[1] = 5.0;
+      v2[2] = 5.0;
+
+      V va = v1.ElementWiseDivide(v2);
+
+      expect(va[0] == 0.75, isTrue);
+      expect(va[1] == -0.8, isTrue);
+      expect(va[2] == 1.0, isTrue);
+    });
+
     // template   
     // test('Test ', () {
     //   expect(, isTrue);
