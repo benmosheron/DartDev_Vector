@@ -55,32 +55,32 @@ void main() {
     });
 
     // "All" tests
-    test('Test correct number of elements', (){
+    test('Test correct number of elements                ', (){
       expect(zeroVector.list.length == 4, isTrue);
     });
     
-    test('Test all zero', () {
+    test('Test all zero                                  ', () {
       expect(zeroVector.list.every((d) => d == 0.0), isTrue);
     });
 
-    test('Test all one', () {
+    test('Test all one                                   ', () {
       expect(oneVector.list.every((d) => d == 1.0), isTrue);
     });
 
-    test('Test zero constructor', () {
+    test('Test zero constructor                          ', () {
       V z = new V.Zero(10);
       expect(z.list.every((d) => d ==0.0), isTrue);
       expect(z.list.length == 10, isTrue);
     });
 
-    test('Test one constructor', () {
+    test('Test one constructor                           ', () {
       V o = new V.One(10);
       expect(o.list.every((d) => d ==1.0), isTrue);
       expect(o.list.length == 10, isTrue);
     });
 
     // Test operations
-    test('Test []', () {
+    test('Test []                                        ', () {
       V v = new V.Zero(3);
       v[0] = 1.0;
       v[1] = 2.0;
@@ -90,7 +90,7 @@ void main() {
       expect(v[2] == 3.0, isTrue);
     });
 
-    test('Test +', () {
+    test('Test + v                                       ', () {
       V v1 = new V.Zero(3);
       v1[0] = 1.0;
       v1[1] = 2.0;
@@ -107,7 +107,21 @@ void main() {
       expect(v[2] == 35.0, isTrue);
     }); 
 
-    test('Test -', () {
+    test('Test + c                                       ', () {
+      V v1 = new V.Zero(3);
+      v1[0] = 1.0;
+      v1[1] = 2.0;
+      v1[2] = 3.0;
+
+      V vd = v1 + 10.0;
+      V vi = v1 + 10;
+
+      expect(vd[0] == vi[0] && vd[0] == 11.0, isTrue);
+      expect(vd[1] == vi[1] && vd[1] == 12.0, isTrue);
+      expect(vd[2] == vi[2] && vd[2] == 13.0, isTrue);
+    }); 
+
+    test('Test - v                                       ', () {
       V v1 = new V.Zero(3);
       v1[0] = 1.0;
       v1[1] = 2.0;
@@ -122,9 +136,23 @@ void main() {
       expect(v[0] == -3.0, isTrue);
       expect(v[1] == 202.0, isTrue);
       expect(v[2] == -29.0, isTrue);
+    });
+
+    test('Test - c                                       ', () {
+      V v1 = new V.Zero(3);
+      v1[0] = 1.0;
+      v1[1] = 2.0;
+      v1[2] = 3.0;
+
+      V vd = v1 - 10.0;
+      V vi = v1 - 10;
+
+      expect(vd[0] == vi[0] && vd[0] == -9.0, isTrue);
+      expect(vd[1] == vi[1] && vd[1] == -8.0, isTrue);
+      expect(vd[2] == vi[2] && vd[2] == -7.0, isTrue);
     }); 
 
-    test('Test *', () {
+    test('Test *                                         ', () {
       V v1 = new V.Zero(3);
       v1[0] = 1.0;
       v1[1] = 2.0;
@@ -141,7 +169,7 @@ void main() {
       expect(vb[2] == -27.0, isTrue);
     });
 
-    test('Test /', () {
+    test('Test /                                         ', () {
       V v1 = new V.Zero(3);
       v1[0] = 3.0;
       v1[1] = -4.0;
