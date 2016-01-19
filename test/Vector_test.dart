@@ -83,6 +83,12 @@ void main() {
       expect(o.list.length == 10, isTrue);
     });
 
+    test('Test random constructor                        ', () {
+      V o = new V.Random(10);
+      _expectTrue(o.list.every((d) => d is double));
+      _expectTrue(o.list.every((d) => d >= 0.0 && d <= 1.0));
+    });
+
     // Test operations
     test('Test []                                        ', () {
       V v = new V.Zero(3);
