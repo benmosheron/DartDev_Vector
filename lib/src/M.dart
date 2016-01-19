@@ -13,6 +13,10 @@ class M{
   //     { a20 a21 a22 }
   List<V> _m;
 
+  //------------//
+  // Properties //
+  //------------//
+
   List<V> get Rows => _m;
 
   List<V> get Columns {
@@ -26,6 +30,15 @@ class M{
   int get nRows => _m.length;
 
   int get nCols => _m[0].length;
+
+  V get Diagonal {
+    List l = new List();
+    // There will be a nicer way to do this, but I can't think of it.
+    for(int i = 0; i<nRows; i++){
+      l.add(this[i][i]);
+    }
+    return(new V(l));
+  }
 
   //--------------//
   // Constructors //

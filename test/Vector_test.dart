@@ -460,6 +460,19 @@ void main() {
       _expectTrue(cols[2][1] == 6.0);
     });
 
+    test('Test diagonals                                 ', (){
+      // { 1 3 1 }
+      // { 1 1 6 }
+      // { 9 8 7 }
+      M m = new M.FromArray(3, 3, 
+        [1.0, 3.0, 1.0,
+         1.0, 1.0, 6.0,
+         9.0, 8.0, 7.0]);
+
+      _expectTrue(m.Diagonal is V<double>);
+      _expectTrue(m.Diagonal ==  new V([1.0, 1.0, 7.0]));
+    });
+
     test('Test One                                       ', (){
       M O = new M.One(2, 3);
       expect(O[0][0] == 1.0, isTrue);

@@ -19,7 +19,7 @@ class V<T>{
 
   int get length => list.length;
 
-  dynamic get Magnitude => sqrt(list.map((e) => e * e).fold(0.0, (p, n) => p + n));
+  double get Magnitude => sqrt(list.map((e) => e * e).fold(0.0, (p, n) => p + n));
 
   //--------------//
   // Constructors //
