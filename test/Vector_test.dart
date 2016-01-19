@@ -7,6 +7,10 @@ import 'package:Vector/Vector.dart';
 import 'package:test/test.dart';
 
 void main() {
+
+  // To run tests:
+  //   >dart "C:\DartDev\Vector\test\Vector_test.dart"
+
   group('V2', () {
     V2 zeroVector2;
     V2 oneVector2;
@@ -43,7 +47,6 @@ void main() {
     	V2 v6 = v5 - new V2.One();
     	expect(v6.x == 23.0 && v6.y == 5.0, isTrue);
     	});
-
   });
 
   group('V', () {
@@ -218,6 +221,14 @@ void main() {
       expect(vb[1] == 1.0, isTrue);
       expect(vb[2] == -1.25, isTrue);
     });
+
+    test('Test Magnitude                                 ', () {
+      _expectTrue(new V.One(1).Magnitude == 1);
+      _expectTrue(new V([3.0, 4.0]).Magnitude == 5.0);
+      _expectTrue(new V([4.0, 3.0]).Magnitude == 5.0);
+      _expectTrue(new V([1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0]).Magnitude == 3.0);
+
+      });
 
     test('Test element wise multiply                     ', () {
       V v1 = new V.Zero(3);

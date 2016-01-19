@@ -53,6 +53,7 @@ class M{
     }
   }
 
+  /// Create a matrix of size n*m from an array of input values
   M.FromArray(int n, int m, List<double> vals){
     if(vals.length != n * m) throw("Number of values provided (${vals.length}) does not match input size ($n * $m).");
     _m = new List<V>(n);

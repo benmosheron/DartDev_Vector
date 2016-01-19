@@ -11,8 +11,15 @@ class V{
   static final Random random = new Random();
   List<double> list;
 
+  //------------//
+  // Properties //
+  //------------//
+
   List<double> get Elements => list;
+
   int get length => list.length;
+
+  double get Magnitude => sqrt(list.map((e) => e * e).fold(0.0,(p, n) => p + n));
 
   //--------------//
   // Constructors //
