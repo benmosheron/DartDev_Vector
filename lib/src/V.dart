@@ -107,6 +107,22 @@ class V<T>{
     return(new V(list.map((e) => e / s).toList()));
   }
 
+  operator ==(V other){
+    bool same = true;
+    for(int i=0; i<length; i++){
+      if(this[i] != other[i])
+        same = false;
+    }
+    return(same);
+  }
+
+  int get hashCode {
+    int result = 17;
+    for(int i=0; i<length; i++){
+      result = 37 * result + this[i].hashCode;
+    }
+    return result;
+  }
   //-----------------//
   // Private methods //
   //-----------------//

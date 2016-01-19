@@ -104,6 +104,22 @@ class M{
     else if (x is int) return _minusScalar(x.toDouble());
   }
 
+  operator ==(M other){
+    bool same = true;
+    for(int i=0; i<nRows; i++){
+      if(this[i] != other[i])
+        same = false;
+    }
+    return(same);
+  }
+
+  int get hashCode {
+    int result = 17;
+    for(int i=0; i<nRows; i++){
+      result = 37 * result + this[i].hashCode;
+    }
+    return result;
+  }
   //-----------------//
   // Private Methods //
   //-----------------//

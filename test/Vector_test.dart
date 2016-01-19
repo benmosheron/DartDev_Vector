@@ -47,6 +47,12 @@ void main() {
     	V2 v6 = v5 - new V2.One();
     	expect(v6.x == 23.0 && v6.y == 5.0, isTrue);
     	});
+
+    test('Test equality', () {
+      V2 v1 = new V2(1.0, 1.1);
+      V2 v2 = new V2(1.0, 1.1);
+      _expectTrue(v1 == v2);
+    });
   });
 
   group('V', () {
@@ -98,6 +104,12 @@ void main() {
       expect(v[0] == 1.0, isTrue);
       expect(v[1] == 2.0, isTrue);
       expect(v[2] == 3.0, isTrue);
+    });
+
+    test('Test equality                                  ', () {
+      V v1 = new V([1.0, 1.1, 1.2]);
+      V v2 = new V([1.0, 1.1, 1.2]);
+      _expectTrue(v1 == v2);
     });
 
     test('Test + v                                       ', () {
@@ -321,11 +333,19 @@ void main() {
     // });
   });
 
-group('V Generics', () {
+  group('V Generics', () {
     V oneVector;
+    V2 oneV2;
 
     setUp(() {
       oneVector = new V.All(2, 1.0);
+      oneV2 = new V2.One();
+    });
+
+    test('Test equality               ', () {
+      V<V2> v1 = new V<V2>([oneV2, oneV2 * 2.0, oneV2 * 3.0]);
+      V<V2> v2 = new V<V2>([oneV2, oneV2 * 2.0, oneV2 * 3.0]);
+      _expectTrue(v1 == v2);
     });
 
     test('Test vector of double (lol) ', (){
@@ -358,13 +378,15 @@ group('V Generics', () {
        _expectTrue(v[1] == "twofour");
     });
 
+
+
     // template   
     // test('Test ', () {
     //   expect(, isTrue);
     // });
   });
 
-group('M', () {
+  group('M', () {
 
     // test('Test print                                     ', (){
     //   M O = new M.FromArray(2, 3, [1.5, 2.0, 3.0, 4.0, 5.0, 6.0]);
@@ -373,6 +395,12 @@ group('M', () {
     //   print('printing array with rounded values:');
     //   O.Print(round: true);
     // });
+
+    test('Test equality                                  ', () {
+      M M1 = new M.Zero(3, 3);
+      M M2 = new M.Zero(3, 3);
+      _expectTrue(M1 == M2);
+    });
 
     test('Test row get                                   ', (){
       M O = new M.One(2,3);
