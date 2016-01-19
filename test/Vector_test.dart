@@ -315,6 +315,49 @@ void main() {
     // });
   });
 
+group('V Generics', () {
+    V oneVector;
+
+    setUp(() {
+      oneVector = new V.All(2, 1.0);
+    });
+
+    test('Test vector of double (lol) ', (){
+      V<double> v1 = new V<double>([1.0, 2.0]);
+      V<double> v2 = new V<double>([3.0, 4.0]);
+
+      _expectTrue((v1 + v2).Elements[0] == 4.0);
+      _expectTrue((v1 + v2).Elements[1] == 6.0);
+    });
+    
+    test('Test vector of vectors      ', (){
+      V<V> v1 = new V<V>([oneVector, oneVector * 2.0]);
+      V<V> v2 = new V<V>([oneVector * 3.0, oneVector * 4.0]);
+
+       _expectTrue(v1[0] is V<double>);
+       _expectTrue(v1[1] is V<double>);
+       _expectTrue(v2[0] is V<double>);
+       _expectTrue(v2[1] is V<double>);
+       _expectTrue(v1[0][0] == 1);
+       _expectTrue(v1[1][0] == 2);
+    });
+
+    test('Test vector of strings      ', (){
+      V<String> v1 = new V<String>(["one", "two"]);
+      V<String> v2 = new V<String>(["three", "four"]);
+
+      V v = v1 + v2;
+
+       _expectTrue(v[0] == "onethree");
+       _expectTrue(v[1] == "twofour");
+    });
+
+    // template   
+    // test('Test ', () {
+    //   expect(, isTrue);
+    // });
+  });
+
 group('M', () {
 
     // test('Test print                                     ', (){

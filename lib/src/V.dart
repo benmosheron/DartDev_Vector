@@ -7,40 +7,40 @@ import 'dart:math';
 import 'M.dart';
 
 /// Vector with n elements
-class V{
+class V<T>{
   static final Random random = new Random();
-  List<double> list;
+  List<T> list;
 
   //------------//
   // Properties //
   //------------//
 
-  List<double> get Elements => list;
+  List<T> get Elements => list;
 
   int get length => list.length;
 
-  double get Magnitude => sqrt(list.map((e) => e * e).fold(0.0, (p, n) => p + n));
+  dynamic get Magnitude => sqrt(list.map((e) => e * e).fold(0.0, (p, n) => p + n));
 
   //--------------//
   // Constructors //
   //--------------//
 
-  V(List<double> vals){
+  V(List<T> vals){
     list = vals;
   }
 
-  V.All(int size, double val){
-    list = new List<double>.filled(size, val);
+  V.All(int size, T val){
+    list = new List<T>.filled(size, val);
   }
 
-  V.Zero(int size):this.All(size, 0.0);
+  V.Zero(int size):this.All(size, 0.0 as T);
 
-  V.One(int size):this.All(size, 1.0);
+  V.One(int size):this.All(size, 1.0 as T);
 
   V.Random(int size){
-    list = new List<double>();
+    list = new List<T>();
     for(int i = 0; i<size; i++){
-      list.add(random.nextDouble());
+      list.add(random.nextDouble() as T);
     }
   }
   
@@ -83,7 +83,7 @@ class V{
   //--------------------//
 
   operator [](int i) => list[i];
-  operator []=(int i, double value) => list[i] = value;
+  operator []=(int i, double value) => list[i] = value as T;
 
   operator +(var x){
     if(x is V) return _plusV(x);
