@@ -227,7 +227,6 @@ void main() {
       _expectTrue(new V([3.0, 4.0]).Magnitude == 5.0);
       _expectTrue(new V([4.0, 3.0]).Magnitude == 5.0);
       _expectTrue(new V([1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0]).Magnitude == 3.0);
-
       });
 
     test('Test element wise multiply                     ', () {
