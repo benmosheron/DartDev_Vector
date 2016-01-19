@@ -378,7 +378,42 @@ void main() {
        _expectTrue(v[1] == "twofour");
     });
 
+    test('Test resolve                ', (){
+      // Test with a useable scenario
+      // Getting the matrix of vectors between a set of vectors
 
+      // 4 particles
+      V2 p0 = new V2(1.0, 1.0);
+      V2 p1 = new V2(1.0, 2.0); // 1.0 above p0
+      V2 p2 = new V2(2.0, 1.0); // 1.0 right of p0
+      V2 p3 = new V2(2.0, 2.0);
+
+      // set of positions
+      V<V2> p = new V<V2>([p0, p1, p2, p3]);
+
+      distanceBetween(x, y) => y - x;
+
+      M D = p.Resolve(p, distanceBetween);
+
+      // First row of D is the distances between p0 and all other particles
+      _expectTrue(D[0] is V<V2>);               // distance between
+      _expectTrue(D[0][0] == new V2.Zero());    // p0 => p0
+      _expectTrue(D[0][1] == new V2(0.0, 1.0)); // p0 => p1
+      _expectTrue(D[0][2] == new V2(1.0, 0.0)); // p0 => p2
+      _expectTrue(D[0][3] == new V2(1.0, 1.0)); // p0 => p3
+
+      _expectTrue(D[1][2] == new V2(1.0, -1.0)); // p1 => p2
+
+
+      // Symmetric elements are negatives
+      for(int i = 0; i < 4; i++){
+        // With zero V2s on diagonals
+        _expectTrue(D[i][i] == new V2.Zero());
+        for(int j = 0; j < 4; j++){
+          _expectTrue(D[i][j] == D[j][i].Negate());
+        }
+      }
+    });
 
     // template   
     // test('Test ', () {
