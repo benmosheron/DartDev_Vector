@@ -53,6 +53,24 @@ void main() {
       V2 v2 = new V2(1.0, 1.1);
       _expectTrue(v1 == v2);
     });
+
+    test('Test Magnitude', () {
+      V2 v1 = new V2.Int(3,4);
+      _expectTrue(v1.Unit == new V2(3.0/5.0, 4.0/5.0));
+    });
+
+    test('Test Magnitude of zero', () {
+      _expectTrue(zeroVector2.Unit == new V2.Zero());
+    });
+
+      test('Test Unit', () {
+      V2 v1 = new V2.Int(3,4);
+      _expectTrue(v1.Magnitude == 5.0);
+    });
+
+    test('Test Unit of zero', () {
+      _expectTrue(zeroVector2.Magnitude == 0.0);
+    });
   });
 
   group('V', () {

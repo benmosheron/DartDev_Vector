@@ -46,6 +46,7 @@ class V2 {
   }
 
   V2 get Unit {
+    if(Magnitude == 0.0) return new V2.Zero();
     return (new V2(x / Magnitude, y / Magnitude));
   }
 
