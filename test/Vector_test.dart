@@ -513,6 +513,31 @@ void main() {
       expect(R.Rows.every((r) => r.Elements.every((e) => e == 2.0)), isTrue);
     });
 
+    test('Test - M                                       ', (){
+      M O1 = new M.One(2, 3);
+      M O2 = new M.One(2, 3);
+      M R = O1 - O2;
+      expect(R.Rows.every((r) => r.Elements.every((e) => e == 0.0)), isTrue);
+    });
+
+    test('Test - c                                       ', (){
+      M O1 = new M.One(2, 3);
+      M R = O1 - 1.0;
+      expect(R.Rows.every((r) => r.Elements.every((e) => e == 0.0)), isTrue);
+    });
+
+    test('Test * c                                       ', (){
+      M O1 = new M.One(2, 3);
+      M R = O1 * 2.0;
+      expect(R.Rows.every((r) => r.Elements.every((e) => e == 2.0)), isTrue);
+    });
+
+    test('Test / c                                       ', (){
+      M O1 = new M.One(2, 3);
+      M R = O1 / 2.0;
+      expect(R.Rows.every((r) => r.Elements.every((e) => e == 0.5)), isTrue);
+    });
+
     test('Test mismatch                                  ', (){
       M M1 = new M.One(2, 3);
       M M2 = new M.One(3, 2);

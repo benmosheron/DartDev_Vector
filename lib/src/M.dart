@@ -102,6 +102,8 @@ class M{
   // Operator Overloads //
   //--------------------//
 
+  // Note - 
+
   operator [](int i) => _m[i];
   operator []=(int i, V v) => _m[i] = v;
 
@@ -115,6 +117,18 @@ class M{
     if(x is M) return _minusMatrix(x);
     else if (x is double) return _minusScalar(x);
     else if (x is int) return _minusScalar(x.toDouble());
+  }
+
+  operator *(var x){
+    //if(x is M) return ElementWiseMultiply(x);
+    /*else*/ if (x is double) return _multiplyScalar(x);
+    else if (x is int) return _multiplyScalar(x.toDouble());
+  }
+
+  operator /(var x){
+    //if(x is M) return ElementWiseDivide(x);
+    /*else*/ if (x is double) return _divideScalar(x);
+    else if (x is int) return _divideScalar(x.toDouble());
   }
 
   operator ==(M other){
@@ -162,6 +176,14 @@ class M{
 
   M _minusMatrix(M A){
     return(this._zip(A, (t, a) => t - a));
+  }
+
+  M _multiplyScalar(double c){
+    return(this.MapF((e) => e * c));
+  }
+
+  M _divideScalar(double c){
+    return(this.MapF((e) => e / c));
   }
 
 }
