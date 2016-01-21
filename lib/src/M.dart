@@ -82,12 +82,23 @@ class M{
   // Methods //
   //---------//
 
+  M Zip(M A, Function f){
+
+    M _interimM = new M.Zero(_m.length, this[0].length);
+
+    for(int i = 0; i<_m.length; i++){
+      _interimM[i] = f(this[i], A[i]);
+    }
+
+    return(_interimM);
+  }
+
   M ElementWiseMultiply(M A){
-    return(_zip(A, (t, a) => t.ElementWiseMultiply(a)));
+    return(Zip(A, (t, a) => t.ElementWiseMultiply(a)));
   }
 
   M ElementWiseDivide(M A){
-    return(_zip(A, (t, a) => t.ElementWiseDivide(a)));
+    return(Zip(A, (t, a) => t.ElementWiseDivide(a)));
   }
 
   void Print({bool round: false}){
@@ -151,23 +162,12 @@ class M{
   // Private Methods //
   //-----------------//
 
-  M _zip(M A, Function f){
-
-    M _interimM = new M.Zero(_m.length, this[0].length);
-
-    for(int i = 0; i<_m.length; i++){
-      _interimM[i] = f(this[i], A[i]);
-    }
-
-    return(_interimM);
-  }
-
   M _plusScalar(double c){
     return(new M(_m.map((v) => v + c).toList()));
   }
 
   M _plusMatrix(M A){
-    return(this._zip(A, (t, a) => t + a));
+    return(this.Zip(A, (t, a) => t + a));
   }
 
   M _minusScalar(double c){
@@ -175,7 +175,7 @@ class M{
   }
 
   M _minusMatrix(M A){
-    return(this._zip(A, (t, a) => t - a));
+    return(this.Zip(A, (t, a) => t - a));
   }
 
   M _multiplyScalar(double c){

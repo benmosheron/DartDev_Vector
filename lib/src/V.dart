@@ -48,12 +48,21 @@ class V<T>{
   // Methods //
   //---------//
 
+  V Zip(V v, Function f){
+    if(this.length != v.length) throw("Vectors have different lengths: [${this.length}], [${v.length}].");
+    V _interimV = new V.Zero(length);
+    for(int i = 0; i<length; i++){
+      _interimV[i] = f(this[i], v[i]);
+    }
+    return(_interimV);
+  }
+
   V ElementWiseMultiply(V v){
-    return(this._zip(v, (v1, v2) => v1 * v2));
+    return(this.Zip(v, (v1, v2) => v1 * v2));
   }
 
   V ElementWiseDivide(V v){
-    return(this._zip(v, (v1, v2) => v1 / v2));
+    return(this.Zip(v, (v1, v2) => v1 / v2));
   }
 
   void Print({bool round: false}){
@@ -127,21 +136,12 @@ class V<T>{
   // Private methods //
   //-----------------//
 
-    V _zip(V v, Function f){
-    if(this.length != v.length) throw("Vectors have different lengths: [${this.length}], [${v.length}].");
-    V _interimV = new V.Zero(length);
-    for(int i = 0; i<length; i++){
-      _interimV[i] = f(this[i], v[i]);
-    }
-    return(_interimV);
-  }
-
   V _plusDouble(double x){
     return(new V(list.map((e) => e + x).toList()));
   }
 
   V _plusV(V v){
-    return(this._zip(v, (v1, v2) => v1 + v2));
+    return(this.Zip(v, (v1, v2) => v1 + v2));
   }
 
   V _minusDouble(double x){
@@ -149,7 +149,7 @@ class V<T>{
   }
 
   V _minusV(V v){
-    return(this._zip(v, (v1, v2) => v1 - v2));
+    return(this.Zip(v, (v1, v2) => v1 - v2));
   }
 
   //-----------------//
