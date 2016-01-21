@@ -433,6 +433,16 @@ void main() {
       }
     });
 
+    test('Test zip different types    ', (){
+      V<V2> velocities = new V([oneV2, oneV2]);
+      V<double> v = new V([5.0, 6.0]);
+
+      V r = velocities.Zip(v, (V2 a, double b) => a * b);
+
+      _expectTrue(r[0] == new V2.Both(5.0));
+      _expectTrue(r[1] == new V2.Both(6.0));
+    });
+
     // template   
     // test('Test ', () {
     //   expect(, isTrue);
