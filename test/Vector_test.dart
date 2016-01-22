@@ -360,6 +360,28 @@ void main() {
       oneV2 = new V2.One();
     });
 
+    test('Test generic constructor    ', () {
+      int _n = 3;
+      V ints = new V.Generic(3);
+      for(int i = 0; i<_n; i++){
+        ints[i] = i;
+      }      
+      _expectTrue(ints.Elements.every((e) => e is int));
+      for(int i = 0; i<_n; i++) _expectTrue(ints[i] == i);
+    });
+
+    test('Test strong typing on ass.  ', () { // thats assign ;)
+      V<int> ints = new V<int>([1,2,3]);
+      expect(() => ints[1] = new V2.Zero(), throws);
+    });
+
+    test('Test strong typing generic  ', () { // thats assign ;)
+      V spooky = new V.Generic(3);
+      // Set the type
+      spooky[0] = 1; // sets type to int
+      expect(() => spooky[1] = new V2.Zero(), throws);
+    });
+
     test('Test equality               ', () {
       V<V2> v1 = new V<V2>([oneV2, oneV2 * 2.0, oneV2 * 3.0]);
       V<V2> v2 = new V<V2>([oneV2, oneV2 * 2.0, oneV2 * 3.0]);

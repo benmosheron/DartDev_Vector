@@ -11,6 +11,12 @@ class V<T>{
   static final Random random = new Random();
   List<T> list;
 
+  // Trying to keep vectors strongly typed.
+  // Generic vectors have _generic = true
+  // try and keep these all the same type by controlling assignments
+  bool _generic = false;
+  int _genericSet = -1; // Set this to the index of the first assignment. This feels like a bit of a hack.
+
   //------------//
   // Properties //
   //------------//
@@ -43,6 +49,11 @@ class V<T>{
       list.add(random.nextDouble() as T);
     }
   }
+
+  V.Generic(int _length){
+    _generic = true;
+    list = new List(_length);
+  }
   
   //---------//
   // Methods //
@@ -50,7 +61,7 @@ class V<T>{
 
   V Zip(V v, Function f){
     if(this.length != v.length) throw("Vectors have different lengths: [${this.length}], [${v.length}].");
-    V _interimV = new V.Zero(length);
+    V _interimV = new V.Zero(length); //TODO: this should create a V<T> where T is they type that f returns
     for(int i = 0; i<length; i++){
       _interimV[i] = f(this[i], v[i]);
     }
@@ -92,7 +103,27 @@ class V<T>{
   //--------------------//
 
   operator [](int i) => list[i];
-  operator []=(int i, double value) => list[i] = value as T;
+
+  operator []=(int i, var value) {
+    if(value is! T) throw new Exception('Vector type mismatch value $value is not of type $T');
+    if(!_generic){
+      // Just set it
+      list[i] = value;      
+    }
+    else{
+      // It's generic D:
+      if(_genericSet == -1){
+        // type of vector has not been set, so set it
+        list[i] = value;
+        _genericSet = i;
+      }
+      else{
+        // type of vector has been set, so make sure it's the same
+        if(value.runtimeType != this[_genericSet].runtimeType) throw new Exception('Vector type mismatch value $value is not of type $T');
+        list[i] = value;
+      }
+    }
+  }
 
   operator +(var x){
     if(x is V) return _plusV(x);
