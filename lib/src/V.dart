@@ -32,6 +32,7 @@ class V<T>{
   //--------------//
 
   V(List<T> vals){
+    if(vals is! List) throw new Exception('Vector input must be a List');
     list = vals;
   }
 
