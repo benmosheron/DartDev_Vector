@@ -7,7 +7,6 @@ import 'package:generic_vector_tools/generic_vector_tools.dart';
 import 'package:test/test.dart';
 
 void main() {
-
   // To run tests:
   //   >dart "C:\DartDev\Vector\test\Vector_test.dart"
 
@@ -28,25 +27,25 @@ void main() {
       expect(oneVector2.x == 1.0 && oneVector2.y == 1.0, isTrue);
     });
 
-    test('Test operations', (){
-    	V2 v1 = new V2(2.0, 3.0);
-    	V2 v2 = new V2(10.0, 0.0);
-    	double c1 = 8.0;
-    	double c2 = 4.0;
+    test('Test operations', () {
+      V2 v1 = new V2(2.0, 3.0);
+      V2 v2 = new V2(10.0, 0.0);
+      double c1 = 8.0;
+      double c2 = 4.0;
 
-    	// (12, 3)
-    	V2 v3 = v2 + v1;
+      // (12, 3)
+      V2 v3 = v2 + v1;
 
-    	// (96, 24)
-    	V2 v4 = v3 * c1;
+      // (96, 24)
+      V2 v4 = v3 * c1;
 
-    	// (24, 6)
-    	V2 v5 = v4 / c2;
+      // (24, 6)
+      V2 v5 = v4 / c2;
 
-    	// (23, 5)
-    	V2 v6 = v5 - new V2.One();
-    	expect(v6.x == 23.0 && v6.y == 5.0, isTrue);
-    	});
+      // (23, 5)
+      V2 v6 = v5 - new V2.One();
+      expect(v6.x == 23.0 && v6.y == 5.0, isTrue);
+    });
 
     test('Test equality', () {
       V2 v1 = new V2(1.0, 1.1);
@@ -55,16 +54,16 @@ void main() {
     });
 
     test('Test Magnitude', () {
-      V2 v1 = new V2.Int(3,4);
-      _expectTrue(v1.Unit == new V2(3.0/5.0, 4.0/5.0));
+      V2 v1 = new V2.Int(3, 4);
+      _expectTrue(v1.Unit == new V2(3.0 / 5.0, 4.0 / 5.0));
     });
 
     test('Test Magnitude of zero', () {
       _expectTrue(zeroVector2.Unit == new V2.Zero());
     });
 
-      test('Test Unit', () {
-      V2 v1 = new V2.Int(3,4);
+    test('Test Unit', () {
+      V2 v1 = new V2.Int(3, 4);
       _expectTrue(v1.Magnitude == 5.0);
     });
 
@@ -83,10 +82,10 @@ void main() {
     });
 
     // "All" tests
-    test('Test correct number of elements                ', (){
+    test('Test correct number of elements                ', () {
       expect(zeroVector.list.length == 4, isTrue);
     });
-    
+
     test('Test all zero                                  ', () {
       expect(zeroVector.list.every((d) => d == 0.0), isTrue);
     });
@@ -97,13 +96,13 @@ void main() {
 
     test('Test zero constructor                          ', () {
       V z = new V.Zero(10);
-      expect(z.list.every((d) => d ==0.0), isTrue);
+      expect(z.list.every((d) => d == 0.0), isTrue);
       expect(z.list.length == 10, isTrue);
     });
 
     test('Test one constructor                           ', () {
       V o = new V.One(10);
-      expect(o.list.every((d) => d ==1.0), isTrue);
+      expect(o.list.every((d) => d == 1.0), isTrue);
       expect(o.list.length == 10, isTrue);
     });
 
@@ -145,7 +144,7 @@ void main() {
       expect(v[0] == 5.0, isTrue);
       expect(v[1] == -198.0, isTrue);
       expect(v[2] == 35.0, isTrue);
-    }); 
+    });
 
     test('Test + c                                       ', () {
       V v1 = new V.Zero(3);
@@ -159,7 +158,7 @@ void main() {
       expect(vd[0] == vi[0] && vd[0] == 11.0, isTrue);
       expect(vd[1] == vi[1] && vd[1] == 12.0, isTrue);
       expect(vd[2] == vi[2] && vd[2] == 13.0, isTrue);
-    }); 
+    });
 
     test('Test - v                                       ', () {
       V v1 = new V.Zero(3);
@@ -190,7 +189,7 @@ void main() {
       expect(vd[0] == vi[0] && vd[0] == -9.0, isTrue);
       expect(vd[1] == vi[1] && vd[1] == -8.0, isTrue);
       expect(vd[2] == vi[2] && vd[2] == -7.0, isTrue);
-    }); 
+    });
 
     test('Test * scalar                                  ', () {
       V v1 = new V.Zero(3);
@@ -262,8 +261,10 @@ void main() {
       _expectTrue(new V.One(1).Magnitude == 1);
       _expectTrue(new V([3.0, 4.0]).Magnitude == 5.0);
       _expectTrue(new V([4.0, 3.0]).Magnitude == 5.0);
-      _expectTrue(new V([1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0]).Magnitude == 3.0);
-      });
+      _expectTrue(
+          new V([1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0]).Magnitude ==
+              3.0);
+    });
 
     test('Test element wise multiply                     ', () {
       V v1 = new V.Zero(3);
@@ -301,7 +302,7 @@ void main() {
       expect(va[2] == 1.0, isTrue);
     });
 
-    test('Test resolve                                   ', (){
+    test('Test resolve                                   ', () {
       V v1 = new V([0.0, 1.0, 2.0]);
       V v2 = new V([10.0, 11.0, 12.0]);
 
@@ -312,25 +313,21 @@ void main() {
       M R2 = v1.Resolve(v2, f2);
 
       // Expected results
-      M E1 = new M.FromArray(3, 3, 
-        [10.0, 11.0, 12.0,
-         11.0, 12.0, 13.0,
-         12.0, 13.0, 14.0]);
+      M E1 = new M.FromArray(
+          3, 3, [10.0, 11.0, 12.0, 11.0, 12.0, 13.0, 12.0, 13.0, 14.0]);
 
-      M E2 = new M.FromArray(3, 3, 
-        [0.0, 0.0, 0.0,
-         10.0, 11.0, 12.0,
-         20.0, 22.0, 24.0]);
+      M E2 = new M.FromArray(
+          3, 3, [0.0, 0.0, 0.0, 10.0, 11.0, 12.0, 20.0, 22.0, 24.0]);
 
-      for(int i = 0; i < 3; i++){
-        for(int j = 0; j < 3; j++){
+      for (int i = 0; i < 3; i++) {
+        for (int j = 0; j < 3; j++) {
           _expectTrue(R1[i][j] == E1[i][j]);
           _expectTrue(R2[i][j] == E2[i][j]);
         }
       }
     });
 
-    test('Test MapF                                      ', (){
+    test('Test MapF                                      ', () {
       V v1 = new V([0.0, 1.0, 2.0]);
 
       f1(x) => x * x;
@@ -340,12 +337,12 @@ void main() {
       // Expected results
       V e1 = new V([0.0, 1.0, 4.0]);
 
-      for(int i = 0; i < 3; i++){
+      for (int i = 0; i < 3; i++) {
         _expectTrue(vr[i] == e1[i]);
       }
     });
 
-    // template   
+    // template
     // test('Test ', () {
     //   expect(, isTrue);
     // });
@@ -363,19 +360,21 @@ void main() {
     test('Test generic constructor    ', () {
       int _n = 3;
       V ints = new V.Generic(3);
-      for(int i = 0; i<_n; i++){
+      for (int i = 0; i < _n; i++) {
         ints[i] = i;
-      }      
+      }
       _expectTrue(ints.Elements.every((e) => e is int));
-      for(int i = 0; i<_n; i++) _expectTrue(ints[i] == i);
+      for (int i = 0; i < _n; i++) _expectTrue(ints[i] == i);
     });
 
-    test('Test strong typing on ass.  ', () { // thats assign ;)
-      V<int> ints = new V<int>([1,2,3]);
+    test('Test strong typing on ass.  ', () {
+      // thats assign ;)
+      V<int> ints = new V<int>([1, 2, 3]);
       expect(() => ints[1] = new V2.Zero(), throws);
     });
 
-    test('Test strong typing generic  ', () { // thats assign ;)
+    test('Test strong typing generic  ', () {
+      // thats assign ;)
       V spooky = new V.Generic(3);
       // Set the type
       spooky[0] = 1; // sets type to int
@@ -388,37 +387,37 @@ void main() {
       _expectTrue(v1 == v2);
     });
 
-    test('Test vector of double (lol) ', (){
+    test('Test vector of double (lol) ', () {
       V<double> v1 = new V<double>([1.0, 2.0]);
       V<double> v2 = new V<double>([3.0, 4.0]);
 
       _expectTrue((v1 + v2).Elements[0] == 4.0);
       _expectTrue((v1 + v2).Elements[1] == 6.0);
     });
-    
-    test('Test vector of vectors      ', (){
+
+    test('Test vector of vectors      ', () {
       V<V> v1 = new V<V>([oneVector, oneVector * 2.0]);
       V<V> v2 = new V<V>([oneVector * 3.0, oneVector * 4.0]);
 
-       _expectTrue(v1[0] is V<double>);
-       _expectTrue(v1[1] is V<double>);
-       _expectTrue(v2[0] is V<double>);
-       _expectTrue(v2[1] is V<double>);
-       _expectTrue(v1[0][0] == 1);
-       _expectTrue(v1[1][0] == 2);
+      _expectTrue(v1[0] is V<double>);
+      _expectTrue(v1[1] is V<double>);
+      _expectTrue(v2[0] is V<double>);
+      _expectTrue(v2[1] is V<double>);
+      _expectTrue(v1[0][0] == 1);
+      _expectTrue(v1[1][0] == 2);
     });
 
-    test('Test vector of strings      ', (){
+    test('Test vector of strings      ', () {
       V<String> v1 = new V<String>(["one", "two"]);
       V<String> v2 = new V<String>(["three", "four"]);
 
       V v = v1 + v2;
 
-       _expectTrue(v[0] == "onethree");
-       _expectTrue(v[1] == "twofour");
+      _expectTrue(v[0] == "onethree");
+      _expectTrue(v[1] == "twofour");
     });
 
-    test('Test resolve                ', (){
+    test('Test resolve                ', () {
       // Test with a useable scenario
       // Getting the matrix of vectors between a set of vectors
 
@@ -436,26 +435,25 @@ void main() {
       M D = p.Resolve(p, distanceBetween);
 
       // First row of D is the distances between p0 and all other particles
-      _expectTrue(D[0] is V<V2>);               // distance between
-      _expectTrue(D[0][0] == new V2.Zero());    // p0 => p0
+      _expectTrue(D[0] is V<V2>); // distance between
+      _expectTrue(D[0][0] == new V2.Zero()); // p0 => p0
       _expectTrue(D[0][1] == new V2(0.0, 1.0)); // p0 => p1
       _expectTrue(D[0][2] == new V2(1.0, 0.0)); // p0 => p2
       _expectTrue(D[0][3] == new V2(1.0, 1.0)); // p0 => p3
 
       _expectTrue(D[1][2] == new V2(1.0, -1.0)); // p1 => p2
 
-
       // Symmetric elements are negatives
-      for(int i = 0; i < 4; i++){
+      for (int i = 0; i < 4; i++) {
         // With zero V2s on diagonals
         _expectTrue(D[i][i] == new V2.Zero());
-        for(int j = 0; j < 4; j++){
+        for (int j = 0; j < 4; j++) {
           _expectTrue(D[i][j] == D[j][i].Negate());
         }
       }
     });
 
-    test('Test zip different types    ', (){
+    test('Test zip different types    ', () {
       V<V2> velocities = new V([oneV2, oneV2]);
       V<double> v = new V([5.0, 6.0]);
 
@@ -465,14 +463,13 @@ void main() {
       _expectTrue(r[1] == new V2.Both(6.0));
     });
 
-    // template   
+    // template
     // test('Test ', () {
     //   expect(, isTrue);
     // });
   });
 
   group('M', () {
-
     // test('Test print                                     ', (){
     //   M O = new M.FromArray(2, 3, [1.5, 2.0, 3.0, 4.0, 5.0, 6.0]);
     //   print('printing array: ');
@@ -487,8 +484,8 @@ void main() {
       _expectTrue(M1 == M2);
     });
 
-    test('Test row get                                   ', (){
-      M O = new M.One(2,3);
+    test('Test row get                                   ', () {
+      M O = new M.One(2, 3);
       var rows = O.Rows;
       _expectTrue(rows is List<V> == true);
       _expectTrue(rows.length == 2);
@@ -496,10 +493,10 @@ void main() {
       _expectTrue(rows.every((v) => v.Elements.every((e) => e == 1.0)));
     });
 
-    test('Test column get                                ', (){
+    test('Test column get                                ', () {
       // { 1 3 1 }
       // { 1 1 6 }
-      M O = new M.One(2,3);
+      M O = new M.One(2, 3);
       O[0][1] = 3.0;
       O[1][2] = 6.0;
       var cols = O.Columns;
@@ -510,20 +507,18 @@ void main() {
       _expectTrue(cols[2][1] == 6.0);
     });
 
-    test('Test diagonals                                 ', (){
+    test('Test diagonals                                 ', () {
       // { 1 3 1 }
       // { 1 1 6 }
       // { 9 8 7 }
-      M m = new M.FromArray(3, 3, 
-        [1.0, 3.0, 1.0,
-         1.0, 1.0, 6.0,
-         9.0, 8.0, 7.0]);
+      M m =
+          new M.FromArray(3, 3, [1.0, 3.0, 1.0, 1.0, 1.0, 6.0, 9.0, 8.0, 7.0]);
 
       _expectTrue(m.Diagonal is V<double>);
-      _expectTrue(m.Diagonal ==  new V([1.0, 1.0, 7.0]));
+      _expectTrue(m.Diagonal == new V([1.0, 1.0, 7.0]));
     });
 
-    test('Test One                                       ', (){
+    test('Test One                                       ', () {
       M O = new M.One(2, 3);
       expect(O[0][0] == 1.0, isTrue);
       expect(O[0][1] == 1.0, isTrue);
@@ -533,7 +528,7 @@ void main() {
       expect(O[1][2] == 1.0, isTrue);
     });
 
-    test('Test FromArray                                 ', (){
+    test('Test FromArray                                 ', () {
       // 1 2 3
       // 4 5 6
       M O = new M.FromArray(2, 3, [1.0, 2.0, 3.0, 4.0, 5.0, 6.0]);
@@ -545,50 +540,49 @@ void main() {
       expect(O[1][2] == 6.0, isTrue);
     });
 
-    test('Test FromArray fail                            ', (){
-      expect(() => new M.FromArray(1,1,[0,0]), throws);
+    test('Test FromArray fail                            ', () {
+      expect(() => new M.FromArray(1, 1, [0, 0]), throws);
     });
 
-
-    test('Test + M                                       ', (){
+    test('Test + M                                       ', () {
       M O1 = new M.One(2, 3);
       M O2 = new M.One(2, 3);
       M R = O1 + O2;
       expect(R.Rows.every((r) => r.Elements.every((e) => e == 2.0)), isTrue);
     });
 
-    test('Test + c                                       ', (){
+    test('Test + c                                       ', () {
       M O1 = new M.One(2, 3);
       M R = O1 + 1.0;
       expect(R.Rows.every((r) => r.Elements.every((e) => e == 2.0)), isTrue);
     });
 
-    test('Test - M                                       ', (){
+    test('Test - M                                       ', () {
       M O1 = new M.One(2, 3);
       M O2 = new M.One(2, 3);
       M R = O1 - O2;
       expect(R.Rows.every((r) => r.Elements.every((e) => e == 0.0)), isTrue);
     });
 
-    test('Test - c                                       ', (){
+    test('Test - c                                       ', () {
       M O1 = new M.One(2, 3);
       M R = O1 - 1.0;
       expect(R.Rows.every((r) => r.Elements.every((e) => e == 0.0)), isTrue);
     });
 
-    test('Test * c                                       ', (){
+    test('Test * c                                       ', () {
       M O1 = new M.One(2, 3);
       M R = O1 * 2.0;
       expect(R.Rows.every((r) => r.Elements.every((e) => e == 2.0)), isTrue);
     });
 
-    test('Test / c                                       ', (){
+    test('Test / c                                       ', () {
       M O1 = new M.One(2, 3);
       M R = O1 / 2.0;
       expect(R.Rows.every((r) => r.Elements.every((e) => e == 0.5)), isTrue);
     });
 
-    test('Test mismatch                                  ', (){
+    test('Test mismatch                                  ', () {
       M M1 = new M.One(2, 3);
       M M2 = new M.One(3, 2);
 
@@ -596,7 +590,7 @@ void main() {
       expect(() => M1 - M2, throws);
     });
 
-    test('Test element wise multiply                     ', (){
+    test('Test element wise multiply                     ', () {
       M M1 = new M.FromArray(2, 3, [1.0, 2.0, 3.0, 4.0, 5.0, 6.0]);
       M M2 = new M.FromArray(2, 3, [1.0, 2.0, 3.0, 4.0, 5.0, 6.0]);
 
@@ -609,7 +603,7 @@ void main() {
       expect(R[1][2] == 36.0, isTrue);
     });
 
-    test('Test element wise divide                       ', (){
+    test('Test element wise divide                       ', () {
       M M1 = new M.FromArray(2, 3, [1.0, 8.0, 27.0, 64.0, 125.0, 216.0]);
       M M2 = new M.FromArray(2, 3, [1.0, 2.0, 3.0, 4.0, 5.0, 6.0]);
 
@@ -622,7 +616,7 @@ void main() {
       expect(R[1][2] == 36.0, isTrue);
     });
 
-    test('Test element wise mismatch                     ', (){
+    test('Test element wise mismatch                     ', () {
       M M1 = new M.One(2, 3);
       M M2 = new M.One(3, 2);
 
@@ -630,30 +624,28 @@ void main() {
       expect(() => M1.ElementWiseDivide(M2), throws);
     });
 
-    test('Test MapF                                     ', (){
+    test('Test MapF                                     ', () {
       M M1 = new M.FromArray(2, 2, [1.0, 2.0, 3.0, 4.0]);
 
       M E1 = new M.FromArray(2, 2, [10.0, 20.0, 30.0, 40.0]);
 
       _expectMatrixEquality(M1, E1);
     });
-
   });
-  
 }
 
-void _expectMatrixEquality(M M1, M M2){
+void _expectMatrixEquality(M M1, M M2) {
   _expectTrue(M1.nRows == M2.nRows);
   _expectTrue(M1.nCols == M2.nCols);
 
-      for(int i = 0; i < M1.nRows; i++){
-        for(int j = 0; j < M1.nCols; j++){
-          _expectTrue(M1[i][j] == M1[i][j]);
-          _expectTrue(M2[i][j] == M2[i][j]);
-        }
-      }
+  for (int i = 0; i < M1.nRows; i++) {
+    for (int j = 0; j < M1.nCols; j++) {
+      _expectTrue(M1[i][j] == M1[i][j]);
+      _expectTrue(M2[i][j] == M2[i][j]);
+    }
+  }
 }
 
-void _expectTrue(bool b){
+void _expectTrue(bool b) {
   expect(b, isTrue);
 }
