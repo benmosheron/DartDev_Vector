@@ -7,7 +7,7 @@ import 'dart:math';
 
 /// Vector with n elements
 class V<T> {
-  static final Random random = new Random();
+  static final Random rand = new Random();
   List<T> list;
 
   // Trying to keep vectors strongly typed.
@@ -21,11 +21,11 @@ class V<T> {
   // Properties //
   //------------//
 
-  List<T> get Elements => list;
+  List<T> get elements => list;
 
   int get length => list.length;
 
-  double get Magnitude =>
+  double get magnitude =>
       sqrt(list.map((e) => e * e).fold(0.0, (p, n) => p + n));
 
   //--------------//
@@ -37,22 +37,22 @@ class V<T> {
     list = vals;
   }
 
-  V.All(int size, T val) {
+  V.all(int size, T val) {
     list = new List<T>.filled(size, val);
   }
 
-  V.Zero(int size) : this.All(size, 0.0 as T);
+  V.zero(int size) : this.all(size, 0.0 as T);
 
-  V.One(int size) : this.All(size, 1.0 as T);
+  V.one(int size) : this.all(size, 1.0 as T);
 
-  V.Random(int size) {
+  V.random(int size) {
     list = new List<T>();
     for (int i = 0; i < size; i++) {
-      list.add(random.nextDouble() as T);
+      list.add(rand.nextDouble() as T);
     }
   }
 
-  V.Generic(int _length) {
+  V.generic(int _length) {
     _generic = true;
     list = new List(_length);
   }
@@ -68,29 +68,29 @@ class V<T> {
     return s;
   }
 
-  V Zip(V v, Function f) {
+  V zip(V v, Function f) {
     if (this.length !=
         v.length) throw ("Vectors have different lengths: [${this.length}], [${v.length}].");
-    V _interimV = new V.Generic(length);
+    V _interimV = new V.generic(length);
     for (int i = 0; i < length; i++) {
       _interimV[i] = f(this[i], v[i]);
     }
     return (_interimV);
   }
 
-  V ElementWiseMultiply(V v) {
-    return (this.Zip(v, (v1, v2) => v1 * v2));
+  V elementWiseMultiply(V v) {
+    return (this.zip(v, (v1, v2) => v1 * v2));
   }
 
-  V ElementWiseDivide(V v) {
-    return (this.Zip(v, (v1, v2) => v1 / v2));
+  V elementWiseDivide(V v) {
+    return (this.zip(v, (v1, v2) => v1 / v2));
   }
 
   V round() {
     return (new V(list.map((e) => e.round()).toList()));
   }
 
-  String Print({bool round: false}) {
+  String printVector({bool round: false}) {
     String row;
     if (round) {
       List _l = list.map((x) => x.round());
@@ -103,16 +103,16 @@ class V<T> {
   }
 
   /// Create matrix of function results applied over two vectors
-  V Resolve(V v2, Function f) {
+  V resolve(V v2, Function f) {
     // R = { f(t0, v0), f(t0, v1) }
     //     { f(t1, v0), f(t1, v1) }
     return (new V(list
-        .map((e) => new V((v2.Elements.map((e2) => f(e, e2)).toList())))
+        .map((e) => new V((v2.elements.map((e2) => f(e, e2)).toList())))
         .toList()));
   }
 
-  V MapF(Function f) {
-    return new V(Elements.map((e) => f(e)).toList());
+  V mapF(Function f) {
+    return new V(elements.map((e) => f(e)).toList());
   }
 
   //--------------------//
@@ -189,7 +189,7 @@ class V<T> {
   }
 
   V _plusV(V v) {
-    return (this.Zip(v, (v1, v2) => v1 + v2));
+    return (this.zip(v, (v1, v2) => v1 + v2));
   }
 
   V _minusDouble(double x) {
@@ -197,7 +197,7 @@ class V<T> {
   }
 
   V _minusV(V v) {
-    return (this.Zip(v, (v1, v2) => v1 - v2));
+    return (this.zip(v, (v1, v2) => v1 - v2));
   }
 
   //-----------------//

@@ -52,7 +52,7 @@ class M {
   M.All(int n, int m, double val) {
     _m = new List<V>(n);
     for (int i = 0; i < n; i++) {
-      _m[i] = new V.All(m, val);
+      _m[i] = new V.all(m, val);
     }
   }
 
@@ -63,7 +63,7 @@ class M {
   M.Random(int n, int m) {
     _m = new List<V>(n);
     for (int i = 0; i < n; i++) {
-      _m[i] = new V.Random(m);
+      _m[i] = new V.random(m);
     }
   }
 
@@ -73,7 +73,7 @@ class M {
         n * m) throw ("Number of values provided (${vals.length}) does not match input size ($n * $m).");
     _m = new List<V>(n);
     for (int i = 0; i < n; i++) {
-      _m[i] = new V.Zero(m);
+      _m[i] = new V.zero(m);
       for (int j = 0; j < m; j++) {
         _m[i][j] = vals[(i * m) + j];
       }
@@ -95,23 +95,23 @@ class M {
   }
 
   M ElementWiseMultiply(M A) {
-    return (Zip(A, (t, a) => t.ElementWiseMultiply(a)));
+    return (Zip(A, (t, a) => t.elementWiseMultiply(a)));
   }
 
   M ElementWiseDivide(M A) {
-    return (Zip(A, (t, a) => t.ElementWiseDivide(a)));
+    return (Zip(A, (t, a) => t.elementWiseDivide(a)));
   }
 
   String Print({bool round: false}) {
     String s = "";
     for (int i = 0; i < _m.length; i++) {
-      s += _m[i].Print(round: round) + ((i != _m.length - 1) ? '\r\n' : '');
+      s += _m[i].printVector(round: round) + ((i != _m.length - 1) ? '\r\n' : '');
     }
     return s;
   }
 
   M MapF(Function f) {
-    return (new M(_m.map((v) => v.MapF(f)).toList()));
+    return (new M(_m.map((v) => v.mapF(f)).toList()));
   }
 
   //--------------------//
