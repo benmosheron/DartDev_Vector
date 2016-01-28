@@ -15,8 +15,8 @@ class V<T> {
   // Generic vectors have _generic = true
   // try and keep these all the same type by controlling assignments
   bool _generic = false;
-  int _genericSet =
-      -1; // Set this to the index of the first assignment. This feels like a bit of a hack.
+  // Set this to the index of the first assignment. This feels like a bit of a hack.
+  int _genericSet = -1;
 
   //------------//
   // Properties //
@@ -72,8 +72,7 @@ class V<T> {
   V Zip(V v, Function f) {
     if (this.length !=
         v.length) throw ("Vectors have different lengths: [${this.length}], [${v.length}].");
-    V _interimV = new V.Generic(
-        length);
+    V _interimV = new V.Generic(length);
     for (int i = 0; i < length; i++) {
       _interimV[i] = f(this[i], v[i]);
     }
@@ -105,10 +104,10 @@ class V<T> {
   }
 
   /// Create matrix of function results applied over two vectors
-  M Resolve(V v2, Function f) {
+  V Resolve(V v2, Function f) {
     // R = { f(t0, v0), f(t0, v1) }
     //     { f(t1, v0), f(t1, v1) }
-    return (new M(list
+    return (new V(list
         .map((e) => new V((v2.Elements.map((e2) => f(e, e2)).toList())))
         .toList()));
   }
@@ -210,11 +209,11 @@ class V<T> {
     return (new V(list.map((i) => i * x).toList()));
   }
 
-  M _multiplyByVector(V v) {
+  V _multiplyByVector(V v) {
     // this = t
-    // M = { t0 * v } = { t0v0, t0v1, t0v2 }
+    // R = { t0 * v } = { t0v0, t0v1, t0v2 }
     //     { t1 * v } = { t1v0, t1v1, t1v2 }
     //     { t2 * v } = { t2v0, t2v1, t2v2 }
-    return (new M(list.map((i) => v * i).toList()));
+    return (new V(list.map((i) => v * i).toList()));
   }
 }

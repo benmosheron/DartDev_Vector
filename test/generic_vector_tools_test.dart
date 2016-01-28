@@ -224,7 +224,7 @@ void main() {
       v2[2] = 6.0;
       v2[3] = 7.0;
 
-      M R = v1 * v2;
+      V R = v1 * v2;
 
       expect(R[0][0] == 4.0, isTrue);
       expect(R[0][1] == 5.0, isTrue);
