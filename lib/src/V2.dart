@@ -9,60 +9,60 @@ import 'dart:math';
 class V2 {
   double x;
   double y;
-  static final Random random = new Random();
+  static final Random rand = new Random();
 
   V2(this.x, this.y);
 
-  V2.Both(double val) {
+  V2.both(double val) {
     x = val;
     y = val;
   }
 
-  V2.Int(int x, int y) {
+  V2.int(int x, int y) {
     this.x = x.toDouble();
     this.y = y.toDouble();
   }
 
-  V2.Zero() {
+  V2.zero() {
     x = 0.0;
     y = 0.0;
   }
 
-  V2.One() {
+  V2.one() {
     x = 1.0;
     y = 1.0;
   }
 
-  V2.Random(double magnitude) {
-    x = (random.nextDouble() * 2) - 1;
-    y = (random.nextDouble() * 2) - 1;
-    double scale = magnitude / Magnitude;
+  V2.random(double magnitude) {
+    x = (rand.nextDouble() * 2) - 1;
+    y = (rand.nextDouble() * 2) - 1;
+    double scale = magnitude / this.magnitude;
     x *= scale;
     y *= scale;
   }
 
-  double get Magnitude {
+  double get magnitude {
     return (sqrt((x * x) + (y * y)));
   }
 
-  V2 get Unit {
-    if (Magnitude == 0.0) return new V2.Zero();
-    return (new V2(x / Magnitude, y / Magnitude));
+  V2 get unit {
+    if (magnitude == 0.0) return new V2.zero();
+    return (new V2(x / magnitude, y / magnitude));
   }
 
-  double DistanceFrom(V2 v) {
+  double distanceFrom(V2 v) {
     return (sqrt((this.x + v.x) + (this.y + v.y)));
   }
 
-  V2 Negate() {
+  V2 negate() {
     return (new V2(-x, -y));
   }
 
-  static V2 ElementWiseMax(V2 v1, V2 v2) {
+  static V2 elementWiseMax(V2 v1, V2 v2) {
     return (new V2(max(v1.x, v2.x), max(v1.y, v2.y)));
   }
 
-  static V2 ElementWiseMin(V2 v1, V2 v2) {
+  static V2 elementWiseMin(V2 v1, V2 v2) {
     return (new V2(min(v1.x, v2.x), min(v1.y, v2.y)));
   }
 

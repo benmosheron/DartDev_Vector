@@ -15,8 +15,8 @@ void main() {
     V2 oneVector2;
 
     setUp(() {
-      zeroVector2 = new V2.Zero();
-      oneVector2 = new V2.One();
+      zeroVector2 = new V2.zero();
+      oneVector2 = new V2.one();
     });
 
     test('Test zero', () {
@@ -43,7 +43,7 @@ void main() {
       V2 v5 = v4 / c2;
 
       // (23, 5)
-      V2 v6 = v5 - new V2.One();
+      V2 v6 = v5 - new V2.one();
       expect(v6.x == 23.0 && v6.y == 5.0, isTrue);
     });
 
@@ -54,21 +54,21 @@ void main() {
     });
 
     test('Test Magnitude', () {
-      V2 v1 = new V2.Int(3, 4);
-      _expectTrue(v1.Unit == new V2(3.0 / 5.0, 4.0 / 5.0));
+      V2 v1 = new V2.int(3, 4);
+      _expectTrue(v1.unit == new V2(3.0 / 5.0, 4.0 / 5.0));
     });
 
     test('Test Magnitude of zero', () {
-      _expectTrue(zeroVector2.Unit == new V2.Zero());
+      _expectTrue(zeroVector2.unit == new V2.zero());
     });
 
     test('Test Unit', () {
-      V2 v1 = new V2.Int(3, 4);
-      _expectTrue(v1.Magnitude == 5.0);
+      V2 v1 = new V2.int(3, 4);
+      _expectTrue(v1.magnitude == 5.0);
     });
 
     test('Test Unit of zero', () {
-      _expectTrue(zeroVector2.Magnitude == 0.0);
+      _expectTrue(zeroVector2.magnitude == 0.0);
     });
   });
 
@@ -354,7 +354,7 @@ void main() {
 
     setUp(() {
       oneVector = new V.All(2, 1.0);
-      oneV2 = new V2.One();
+      oneV2 = new V2.one();
     });
 
     test('Test generic constructor    ', () {
@@ -370,7 +370,7 @@ void main() {
     test('Test strong typing on ass.  ', () {
       // thats assign ;)
       V<int> ints = new V<int>([1, 2, 3]);
-      expect(() => ints[1] = new V2.Zero(), throws);
+      expect(() => ints[1] = new V2.zero(), throws);
     });
 
     test('Test strong typing generic  ', () {
@@ -378,7 +378,7 @@ void main() {
       V spooky = new V.Generic(3);
       // Set the type
       spooky[0] = 1; // sets type to int
-      expect(() => spooky[1] = new V2.Zero(), throws);
+      expect(() => spooky[1] = new V2.zero(), throws);
     });
 
     test('Test equality               ', () {
@@ -436,7 +436,7 @@ void main() {
 
       // First row of D is the distances between p0 and all other particles
       _expectTrue(D[0] is V<V2>); // distance between
-      _expectTrue(D[0][0] == new V2.Zero()); // p0 => p0
+      _expectTrue(D[0][0] == new V2.zero()); // p0 => p0
       _expectTrue(D[0][1] == new V2(0.0, 1.0)); // p0 => p1
       _expectTrue(D[0][2] == new V2(1.0, 0.0)); // p0 => p2
       _expectTrue(D[0][3] == new V2(1.0, 1.0)); // p0 => p3
@@ -446,9 +446,9 @@ void main() {
       // Symmetric elements are negatives
       for (int i = 0; i < 4; i++) {
         // With zero V2s on diagonals
-        _expectTrue(D[i][i] == new V2.Zero());
+        _expectTrue(D[i][i] == new V2.zero());
         for (int j = 0; j < 4; j++) {
-          _expectTrue(D[i][j] == D[j][i].Negate());
+          _expectTrue(D[i][j] == D[j][i].negate());
         }
       }
     });
@@ -459,8 +459,8 @@ void main() {
 
       V r = velocities.Zip(v, (V2 a, double b) => a * b);
 
-      _expectTrue(r[0] == new V2.Both(5.0));
-      _expectTrue(r[1] == new V2.Both(6.0));
+      _expectTrue(r[0] == new V2.both(5.0));
+      _expectTrue(r[1] == new V2.both(6.0));
     });
   });
 
