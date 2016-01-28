@@ -62,9 +62,9 @@ class V<T> {
   // Methods //
   //---------//
 
-  toString(){
+  toString() {
     // String s = "";
-    String s = list.fold("",(a,b)=> a.toString() + b.toString() + ", ");
+    String s = list.fold("", (a, b) => a.toString() + b.toString() + ", ");
     s = "(" + s.substring(0, s.length - 2) + ")";
     return s;
   }
@@ -88,8 +88,8 @@ class V<T> {
     return (this.Zip(v, (v1, v2) => v1 / v2));
   }
 
-  V round(){
-    return(new V(list.map((e) => e.round()).toList()));
+  V round() {
+    return (new V(list.map((e) => e.round()).toList()));
   }
 
   String Print({bool round: false}) {
@@ -97,8 +97,7 @@ class V<T> {
     if (round) {
       List _l = list.map((x) => x.round());
       row = _l.toString();
-    }
-    else{
+    } else {
       row = this.toString();
     }
     print(row);

@@ -462,24 +462,6 @@ void main() {
       _expectTrue(r[0] == new V2.Both(5.0));
       _expectTrue(r[1] == new V2.Both(6.0));
     });
-
-    test('Test print                                     ', (){
-      V d = new V([0.0, 1.0]);
-      _expectTrue(d.Print() == "(0.0, 1.0)");
-      _expectTrue(d.Print(round: true) == "(0, 1)");
-      V D = new V([d, d + 1.0, d + 2.0]);
-      _expectTrue(D.Print() == "((0.0, 1.0), (1.0, 2.0), (2.0, 3.0))");
-      _expectTrue(D.Print(round: true) == "((0, 1), (1, 2), (2, 3))");
-      V DD = new V([D, D + 1.0, D + 2.0]);
-      _expectTrue(DD.Print() == 
-        '(((0.0, 1.0), (1.0, 2.0), (2.0, 3.0)),'+
-        ' ((1.0, 2.0), (2.0, 3.0), (3.0, 4.0)),'+
-        ' ((2.0, 3.0), (3.0, 4.0), (4.0, 5.0)))');
-    });
-    // template
-    // test('Test ', () {
-    //   expect(, isTrue);
-    // });
   });
 
   group('M', () {
@@ -636,24 +618,49 @@ void main() {
 
       _expectMatrixEquality(M1, E1);
     });
+  });
 
-    test('Test print                                     ', (){
+  group('Test printing', () {
+    test('Test V.Print()', () {
+      V d = new V([0.0, 1.0]);
+      _expectTrue(d.Print() == "(0.0, 1.0)");
+      _expectTrue(d.Print(round: true) == "(0, 1)");
+      V D = new V([d, d + 1.0, d + 2.0]);
+      _expectTrue(D.Print() == "((0.0, 1.0), (1.0, 2.0), (2.0, 3.0))");
+      _expectTrue(D.Print(round: true) == "((0, 1), (1, 2), (2, 3))");
+      V DD = new V([D, D + 1.0, D + 2.0]);
+      _expectTrue(DD.Print() ==
+          '(((0.0, 1.0), (1.0, 2.0), (2.0, 3.0)),' +
+              ' ((1.0, 2.0), (2.0, 3.0), (3.0, 4.0)),' +
+              ' ((2.0, 3.0), (3.0, 4.0), (4.0, 5.0)))');
+    });
+    
+    test('Test M.Print()', () {
       M O = new M.FromArray(2, 3, [1.5, 2.0, 3.0, 4.0, 5.0, 6.0]);
       print('printing simple array: ');
       _expectStringsEqual(O.Print(), '(1.5, 2.0, 3.0)\r\n(4.0, 5.0, 6.0)');
-      _expectStringsEqual(O.Print(round:true), '(2, 2, 3)\r\n(4, 5, 6)');
+      _expectStringsEqual(O.Print(round: true), '(2, 2, 3)\r\n(4, 5, 6)');
 
       V v = new V([0.0, 1.0]);
-      M A = new M.FromArray(2, 3, [v, v + 1.0, v + 2.0, v + 3.0, v + 4.0, v + 5.0]);
-      _expectStringsEqual(A.Print(),'((0.0, 1.0), (1.0, 2.0), (2.0, 3.0))\r\n((3.0, 4.0), (4.0, 5.0), (5.0, 6.0))');
+      M A = new M.FromArray(
+          2, 3, [v, v + 1.0, v + 2.0, v + 3.0, v + 4.0, v + 5.0]);
+      _expectStringsEqual(A.Print(),
+          '((0.0, 1.0), (1.0, 2.0), (2.0, 3.0))\r\n((3.0, 4.0), (4.0, 5.0), (5.0, 6.0))');
     });
   });
+
+  // Template
+  // group('GroupName', () {
+  //   test('TestName', (){
+
+  //     });
+  // });
 }
 
 // == seems to get confused by newline, so comparing element-wise
-void _expectStringsEqual(String s1, String s2){
-  for(int i = 0; i<s1.length; i++){
-    _expectTrue(s1[i]==s2[i]);
+void _expectStringsEqual(String s1, String s2) {
+  for (int i = 0; i < s1.length; i++) {
+    _expectTrue(s1[i] == s2[i]);
   }
 }
 

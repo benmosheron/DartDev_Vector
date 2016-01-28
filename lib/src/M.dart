@@ -102,7 +102,7 @@ class M {
 
   String Print({bool round: false}) {
     String s = "";
-    for(int i = 0; i<_m.length; i++){
+    for (int i = 0; i < _m.length; i++) {
       s += _m[i].Print(round: round) + ((i != _m.length - 1) ? '\r\n' : '');
     }
     return s;

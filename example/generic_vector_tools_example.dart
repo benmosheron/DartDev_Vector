@@ -12,7 +12,8 @@ main() {
   position.Print();
 
   // Create a vector of positions
-  V<V<double>> positions = new V<V<double>>([position, position + 1.0, position + 2.0]);
+  V<V<double>> positions =
+      new V<V<double>>([position, position + 1.0, position + 2.0]);
   print("positions:");
   positions.Print();
 }
