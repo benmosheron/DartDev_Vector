@@ -32,7 +32,8 @@ main() {
   print("");
 
   // We can also easily compute the magnitude of the distances (or any other function over elements)
-  M magnitudes = new M.FromV(positions.Resolve(positions, (V p1, V p2) => (p2 - p1).Magnitude));
+  M magnitudes = new M.FromV(
+      positions.Resolve(positions, (V p1, V p2) => (p2 - p1).Magnitude));
   print("magnitudes:");
   magnitudes.Print();
   print("");
@@ -43,7 +44,7 @@ main() {
   print("");
 
   // And easily apply functions over the matrix
-  M magnitudesCubedThenRounded = magnitudes.MapF((e) => (e*e*e).round());
+  M magnitudesCubedThenRounded = magnitudes.MapF((e) => (e * e * e).round());
   print("magnitudesCubedThenRounded:");
   magnitudesCubedThenRounded.Print();
   print("");

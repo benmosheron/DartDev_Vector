@@ -105,7 +105,8 @@ class M {
   String printMatrix({bool round: false}) {
     String s = "";
     for (int i = 0; i < _m.length; i++) {
-      s += _m[i].printVector(round: round) + ((i != _m.length - 1) ? '\r\n' : '');
+      s += _m[i].printVector(round: round) +
+          ((i != _m.length - 1) ? '\r\n' : '');
     }
     return s;
   }

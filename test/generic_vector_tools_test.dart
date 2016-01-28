@@ -637,7 +637,8 @@ void main() {
 
     test('Test M.printVector()', () {
       M O = new M.fromArray(2, 3, [1.5, 2.0, 3.0, 4.0, 5.0, 6.0]);
-      _expectStringsEqual(O.printMatrix(), '(1.5, 2.0, 3.0)\r\n(4.0, 5.0, 6.0)');
+      _expectStringsEqual(
+          O.printMatrix(), '(1.5, 2.0, 3.0)\r\n(4.0, 5.0, 6.0)');
       _expectStringsEqual(O.printMatrix(round: true), '(2, 2, 3)\r\n(4, 5, 6)');
       V v = new V([0.0, 1.0]);
       M A = new M.fromArray(
