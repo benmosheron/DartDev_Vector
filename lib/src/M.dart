@@ -47,6 +47,8 @@ class M {
     _m = vals;
   }
 
+  M.FromV(V vals) : this(vals.list);
+
   M.All(int n, int m, double val) {
     _m = new List<V>(n);
     for (int i = 0; i < n; i++) {
