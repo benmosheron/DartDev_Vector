@@ -1,9 +1,9 @@
 // Copyright (c) 2015, Ben Sheron. All rights reserved. Use of this source code
 // is governed by a BSD-style license that can be found in the LICENSE file.
 
-library Vector.M;
+library generic_vector_tools.m;
 
-import 'V.dart';
+import 'v.dart';
 
 /// Matrix with n (rows) * m (cols) elements
 class M{
