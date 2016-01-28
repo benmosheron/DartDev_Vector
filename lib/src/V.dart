@@ -4,7 +4,6 @@
 library generic_vector_tools.v;
 
 import 'dart:math';
-import 'm.dart';
 
 /// Vector with n elements
 class V<T> {
