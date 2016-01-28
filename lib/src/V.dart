@@ -72,8 +72,8 @@ class V<T> {
   V Zip(V v, Function f) {
     if (this.length !=
         v.length) throw ("Vectors have different lengths: [${this.length}], [${v.length}].");
-    V _interimV = new V.Zero(
-        length); //TODO: this should create a V<T> where T is they type that f returns
+    V _interimV = new V.Generic(
+        length);
     for (int i = 0; i < length; i++) {
       _interimV[i] = f(this[i], v[i]);
     }

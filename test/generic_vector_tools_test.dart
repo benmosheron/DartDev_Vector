@@ -634,13 +634,11 @@ void main() {
               ' ((1.0, 2.0), (2.0, 3.0), (3.0, 4.0)),' +
               ' ((2.0, 3.0), (3.0, 4.0), (4.0, 5.0)))');
     });
-    
+
     test('Test M.Print()', () {
       M O = new M.FromArray(2, 3, [1.5, 2.0, 3.0, 4.0, 5.0, 6.0]);
-      print('printing simple array: ');
       _expectStringsEqual(O.Print(), '(1.5, 2.0, 3.0)\r\n(4.0, 5.0, 6.0)');
       _expectStringsEqual(O.Print(round: true), '(2, 2, 3)\r\n(4, 5, 6)');
-
       V v = new V([0.0, 1.0]);
       M A = new M.FromArray(
           2, 3, [v, v + 1.0, v + 2.0, v + 3.0, v + 4.0, v + 5.0]);
