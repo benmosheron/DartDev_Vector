@@ -62,6 +62,13 @@ class V<T> {
   // Methods //
   //---------//
 
+  toString(){
+    // String s = "";
+    String s = list.fold("",(a,b)=> a.toString() + b.toString() + ", ");
+    s = "(" + s.substring(0, s.length - 2) + ")";
+    return s;
+  }
+
   V Zip(V v, Function f) {
     if (this.length !=
         v.length) throw ("Vectors have different lengths: [${this.length}], [${v.length}].");
@@ -81,14 +88,21 @@ class V<T> {
     return (this.Zip(v, (v1, v2) => v1 / v2));
   }
 
-  void Print({bool round: false}) {
-    String row = "";
+  V round(){
+    return(new V(list.map((e) => e.round()).toList()));
+  }
+
+  String Print({bool round: false}) {
+    String row;
     if (round) {
-      Elements.forEach((e) => row += "${e.round()} ");
-    } else {
-      Elements.forEach((e) => row += "$e ");
+      List _l = list.map((x) => x.round());
+      row = _l.toString();
+    }
+    else{
+      row = this.toString();
     }
     print(row);
+    return row;
   }
 
   /// Create matrix of function results applied over two vectors

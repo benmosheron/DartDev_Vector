@@ -100,8 +100,12 @@ class M {
     return (Zip(A, (t, a) => t.ElementWiseDivide(a)));
   }
 
-  void Print({bool round: false}) {
-    _m.forEach((v) => v.Print(round: round));
+  String Print({bool round: false}) {
+    String s = "";
+    for(int i = 0; i<_m.length; i++){
+      s += _m[i].Print(round: round) + ((i != _m.length - 1) ? '\r\n' : '');
+    }
+    return s;
   }
 
   M MapF(Function f) {
