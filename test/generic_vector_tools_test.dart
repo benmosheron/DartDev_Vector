@@ -309,8 +309,8 @@ void main() {
       f1(x, y) => x + y;
       f2(x, y) => x * y;
 
-      M R1 = v1.Resolve(v2, f1);
-      M R2 = v1.Resolve(v2, f2);
+      V R1 = v1.Resolve(v2, f1);
+      V R2 = v1.Resolve(v2, f2);
 
       // Expected results
       M E1 = new M.FromArray(
@@ -432,7 +432,7 @@ void main() {
 
       distanceBetween(x, y) => y - x;
 
-      M D = p.Resolve(p, distanceBetween);
+      V D = p.Resolve(p, distanceBetween);
 
       // First row of D is the distances between p0 and all other particles
       _expectTrue(D[0] is V<V2>); // distance between
