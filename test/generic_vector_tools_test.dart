@@ -313,10 +313,10 @@ void main() {
       V R2 = v1.resolve(v2, f2);
 
       // Expected results
-      M E1 = new M.FromArray(
+      M E1 = new M.fromArray(
           3, 3, [10.0, 11.0, 12.0, 11.0, 12.0, 13.0, 12.0, 13.0, 14.0]);
 
-      M E2 = new M.FromArray(
+      M E2 = new M.fromArray(
           3, 3, [0.0, 0.0, 0.0, 10.0, 11.0, 12.0, 20.0, 22.0, 24.0]);
 
       for (int i = 0; i < 3; i++) {
@@ -466,14 +466,14 @@ void main() {
 
   group('M', () {
     test('Test equality                                  ', () {
-      M M1 = new M.Zero(3, 3);
-      M M2 = new M.Zero(3, 3);
+      M M1 = new M.zero(3, 3);
+      M M2 = new M.zero(3, 3);
       _expectTrue(M1 == M2);
     });
 
     test('Test row get                                   ', () {
-      M O = new M.One(2, 3);
-      var rows = O.Rows;
+      M O = new M.one(2, 3);
+      var rows = O.rows;
       _expectTrue(rows is List<V> == true);
       _expectTrue(rows.length == 2);
       _expectTrue(rows.every((v) => v.length == 3));
@@ -483,10 +483,10 @@ void main() {
     test('Test column get                                ', () {
       // { 1 3 1 }
       // { 1 1 6 }
-      M O = new M.One(2, 3);
+      M O = new M.one(2, 3);
       O[0][1] = 3.0;
       O[1][2] = 6.0;
-      var cols = O.Columns;
+      var cols = O.columns;
       _expectTrue(cols is List<V> == true);
       _expectTrue(cols.length == 3);
       _expectTrue(cols.every((v) => v.length == 2));
@@ -499,14 +499,14 @@ void main() {
       // { 1 1 6 }
       // { 9 8 7 }
       M m =
-          new M.FromArray(3, 3, [1.0, 3.0, 1.0, 1.0, 1.0, 6.0, 9.0, 8.0, 7.0]);
+          new M.fromArray(3, 3, [1.0, 3.0, 1.0, 1.0, 1.0, 6.0, 9.0, 8.0, 7.0]);
 
-      _expectTrue(m.Diagonal is V<double>);
-      _expectTrue(m.Diagonal == new V([1.0, 1.0, 7.0]));
+      _expectTrue(m.diagonal is V<double>);
+      _expectTrue(m.diagonal == new V([1.0, 1.0, 7.0]));
     });
 
     test('Test One                                       ', () {
-      M O = new M.One(2, 3);
+      M O = new M.one(2, 3);
       expect(O[0][0] == 1.0, isTrue);
       expect(O[0][1] == 1.0, isTrue);
       expect(O[0][2] == 1.0, isTrue);
@@ -518,7 +518,7 @@ void main() {
     test('Test FromArray                                 ', () {
       // 1 2 3
       // 4 5 6
-      M O = new M.FromArray(2, 3, [1.0, 2.0, 3.0, 4.0, 5.0, 6.0]);
+      M O = new M.fromArray(2, 3, [1.0, 2.0, 3.0, 4.0, 5.0, 6.0]);
       expect(O[0][0] == 1.0, isTrue);
       expect(O[0][1] == 2.0, isTrue);
       expect(O[0][2] == 3.0, isTrue);
@@ -528,60 +528,60 @@ void main() {
     });
 
     test('Test FromArray fail                            ', () {
-      expect(() => new M.FromArray(1, 1, [0, 0]), throws);
+      expect(() => new M.fromArray(1, 1, [0, 0]), throws);
     });
 
     test('Test + M                                       ', () {
-      M O1 = new M.One(2, 3);
-      M O2 = new M.One(2, 3);
+      M O1 = new M.one(2, 3);
+      M O2 = new M.one(2, 3);
       M R = O1 + O2;
-      expect(R.Rows.every((r) => r.elements.every((e) => e == 2.0)), isTrue);
+      expect(R.rows.every((r) => r.elements.every((e) => e == 2.0)), isTrue);
     });
 
     test('Test + c                                       ', () {
-      M O1 = new M.One(2, 3);
+      M O1 = new M.one(2, 3);
       M R = O1 + 1.0;
-      expect(R.Rows.every((r) => r.elements.every((e) => e == 2.0)), isTrue);
+      expect(R.rows.every((r) => r.elements.every((e) => e == 2.0)), isTrue);
     });
 
     test('Test - M                                       ', () {
-      M O1 = new M.One(2, 3);
-      M O2 = new M.One(2, 3);
+      M O1 = new M.one(2, 3);
+      M O2 = new M.one(2, 3);
       M R = O1 - O2;
-      expect(R.Rows.every((r) => r.elements.every((e) => e == 0.0)), isTrue);
+      expect(R.rows.every((r) => r.elements.every((e) => e == 0.0)), isTrue);
     });
 
     test('Test - c                                       ', () {
-      M O1 = new M.One(2, 3);
+      M O1 = new M.one(2, 3);
       M R = O1 - 1.0;
-      expect(R.Rows.every((r) => r.elements.every((e) => e == 0.0)), isTrue);
+      expect(R.rows.every((r) => r.elements.every((e) => e == 0.0)), isTrue);
     });
 
     test('Test * c                                       ', () {
-      M O1 = new M.One(2, 3);
+      M O1 = new M.one(2, 3);
       M R = O1 * 2.0;
-      expect(R.Rows.every((r) => r.elements.every((e) => e == 2.0)), isTrue);
+      expect(R.rows.every((r) => r.elements.every((e) => e == 2.0)), isTrue);
     });
 
     test('Test / c                                       ', () {
-      M O1 = new M.One(2, 3);
+      M O1 = new M.one(2, 3);
       M R = O1 / 2.0;
-      expect(R.Rows.every((r) => r.elements.every((e) => e == 0.5)), isTrue);
+      expect(R.rows.every((r) => r.elements.every((e) => e == 0.5)), isTrue);
     });
 
     test('Test mismatch                                  ', () {
-      M M1 = new M.One(2, 3);
-      M M2 = new M.One(3, 2);
+      M M1 = new M.one(2, 3);
+      M M2 = new M.one(3, 2);
 
       expect(() => M1 + M2, throws);
       expect(() => M1 - M2, throws);
     });
 
     test('Test element wise multiply                     ', () {
-      M M1 = new M.FromArray(2, 3, [1.0, 2.0, 3.0, 4.0, 5.0, 6.0]);
-      M M2 = new M.FromArray(2, 3, [1.0, 2.0, 3.0, 4.0, 5.0, 6.0]);
+      M M1 = new M.fromArray(2, 3, [1.0, 2.0, 3.0, 4.0, 5.0, 6.0]);
+      M M2 = new M.fromArray(2, 3, [1.0, 2.0, 3.0, 4.0, 5.0, 6.0]);
 
-      M R = M1.ElementWiseMultiply(M2);
+      M R = M1.elementWiseMultiply(M2);
       expect(R[0][0] == 1.0, isTrue);
       expect(R[0][1] == 4.0, isTrue);
       expect(R[0][2] == 9.0, isTrue);
@@ -591,10 +591,10 @@ void main() {
     });
 
     test('Test element wise divide                       ', () {
-      M M1 = new M.FromArray(2, 3, [1.0, 8.0, 27.0, 64.0, 125.0, 216.0]);
-      M M2 = new M.FromArray(2, 3, [1.0, 2.0, 3.0, 4.0, 5.0, 6.0]);
+      M M1 = new M.fromArray(2, 3, [1.0, 8.0, 27.0, 64.0, 125.0, 216.0]);
+      M M2 = new M.fromArray(2, 3, [1.0, 2.0, 3.0, 4.0, 5.0, 6.0]);
 
-      M R = M1.ElementWiseDivide(M2);
+      M R = M1.elementWiseDivide(M2);
       expect(R[0][0] == 1.0, isTrue);
       expect(R[0][1] == 4.0, isTrue);
       expect(R[0][2] == 9.0, isTrue);
@@ -604,17 +604,17 @@ void main() {
     });
 
     test('Test element wise mismatch                     ', () {
-      M M1 = new M.One(2, 3);
-      M M2 = new M.One(3, 2);
+      M M1 = new M.one(2, 3);
+      M M2 = new M.one(3, 2);
 
-      expect(() => M1.ElementWiseMultiply(M2), throws);
-      expect(() => M1.ElementWiseDivide(M2), throws);
+      expect(() => M1.elementWiseMultiply(M2), throws);
+      expect(() => M1.elementWiseDivide(M2), throws);
     });
 
     test('Test MapF                                      ', () {
-      M M1 = new M.FromArray(2, 2, [1.0, 2.0, 3.0, 4.0]);
+      M M1 = new M.fromArray(2, 2, [1.0, 2.0, 3.0, 4.0]);
 
-      M E1 = new M.FromArray(2, 2, [10.0, 20.0, 30.0, 40.0]);
+      M E1 = new M.fromArray(2, 2, [10.0, 20.0, 30.0, 40.0]);
 
       _expectMatrixEquality(M1, E1);
     });
@@ -636,13 +636,13 @@ void main() {
     });
 
     test('Test M.printVector()', () {
-      M O = new M.FromArray(2, 3, [1.5, 2.0, 3.0, 4.0, 5.0, 6.0]);
-      _expectStringsEqual(O.Print(), '(1.5, 2.0, 3.0)\r\n(4.0, 5.0, 6.0)');
-      _expectStringsEqual(O.Print(round: true), '(2, 2, 3)\r\n(4, 5, 6)');
+      M O = new M.fromArray(2, 3, [1.5, 2.0, 3.0, 4.0, 5.0, 6.0]);
+      _expectStringsEqual(O.printMatrix(), '(1.5, 2.0, 3.0)\r\n(4.0, 5.0, 6.0)');
+      _expectStringsEqual(O.printMatrix(round: true), '(2, 2, 3)\r\n(4, 5, 6)');
       V v = new V([0.0, 1.0]);
-      M A = new M.FromArray(
+      M A = new M.fromArray(
           2, 3, [v, v + 1.0, v + 2.0, v + 3.0, v + 4.0, v + 5.0]);
-      _expectStringsEqual(A.Print(),
+      _expectStringsEqual(A.printMatrix(),
           '((0.0, 1.0), (1.0, 2.0), (2.0, 3.0))\r\n((3.0, 4.0), (4.0, 5.0), (5.0, 6.0))');
     });
   });

@@ -16,9 +16,9 @@ class M {
   // Properties //
   //------------//
 
-  List<V> get Rows => _m;
+  List<V> get rows => _m;
 
-  List<V> get Columns {
+  List<V> get columns {
     var c = new List<V>(nCols);
     for (int i = 0; i < nCols; i++) {
       c[i] = new V(_m.map((r) => r[i]).toList());
@@ -30,7 +30,7 @@ class M {
 
   int get nCols => _m[0].length;
 
-  V get Diagonal {
+  V get diagonal {
     List l = new List();
     // There will be a nicer way to do this, but I can't think of it.
     for (int i = 0; i < nRows; i++) {
@@ -47,20 +47,20 @@ class M {
     _m = vals;
   }
 
-  M.FromV(V vals) : this(vals.list);
+  M.fromV(V vals) : this(vals.list);
 
-  M.All(int n, int m, double val) {
+  M.all(int n, int m, double val) {
     _m = new List<V>(n);
     for (int i = 0; i < n; i++) {
       _m[i] = new V.all(m, val);
     }
   }
 
-  M.Zero(int n, int m) : this.All(n, m, 0.0);
+  M.zero(int n, int m) : this.all(n, m, 0.0);
 
-  M.One(int n, int m) : this.All(n, m, 1.0);
+  M.one(int n, int m) : this.all(n, m, 1.0);
 
-  M.Random(int n, int m) {
+  M.random(int n, int m) {
     _m = new List<V>(n);
     for (int i = 0; i < n; i++) {
       _m[i] = new V.random(m);
@@ -68,7 +68,7 @@ class M {
   }
 
   /// Create a matrix of size n*m from an array of input values
-  M.FromArray(int n, int m, List<double> vals) {
+  M.fromArray(int n, int m, List<double> vals) {
     if (vals.length !=
         n * m) throw ("Number of values provided (${vals.length}) does not match input size ($n * $m).");
     _m = new List<V>(n);
@@ -84,8 +84,8 @@ class M {
   // Methods //
   //---------//
 
-  M Zip(M A, Function f) {
-    M _interimM = new M.Zero(_m.length, this[0].length);
+  M zip(M A, Function f) {
+    M _interimM = new M.zero(_m.length, this[0].length);
 
     for (int i = 0; i < _m.length; i++) {
       _interimM[i] = f(this[i], A[i]);
@@ -94,15 +94,15 @@ class M {
     return (_interimM);
   }
 
-  M ElementWiseMultiply(M A) {
-    return (Zip(A, (t, a) => t.elementWiseMultiply(a)));
+  M elementWiseMultiply(M A) {
+    return (zip(A, (t, a) => t.elementWiseMultiply(a)));
   }
 
-  M ElementWiseDivide(M A) {
-    return (Zip(A, (t, a) => t.elementWiseDivide(a)));
+  M elementWiseDivide(M A) {
+    return (zip(A, (t, a) => t.elementWiseDivide(a)));
   }
 
-  String Print({bool round: false}) {
+  String printMatrix({bool round: false}) {
     String s = "";
     for (int i = 0; i < _m.length; i++) {
       s += _m[i].printVector(round: round) + ((i != _m.length - 1) ? '\r\n' : '');
@@ -110,7 +110,7 @@ class M {
     return s;
   }
 
-  M MapF(Function f) {
+  M mapF(Function f) {
     return (new M(_m.map((v) => v.mapF(f)).toList()));
   }
 
@@ -171,7 +171,7 @@ class M {
   }
 
   M _plusMatrix(M A) {
-    return (this.Zip(A, (t, a) => t + a));
+    return (this.zip(A, (t, a) => t + a));
   }
 
   M _minusScalar(double c) {
@@ -179,14 +179,14 @@ class M {
   }
 
   M _minusMatrix(M A) {
-    return (this.Zip(A, (t, a) => t - a));
+    return (this.zip(A, (t, a) => t - a));
   }
 
   M _multiplyScalar(double c) {
-    return (this.MapF((e) => e * c));
+    return (this.mapF((e) => e * c));
   }
 
   M _divideScalar(double c) {
-    return (this.MapF((e) => e / c));
+    return (this.mapF((e) => e / c));
   }
 }
