@@ -1,5 +1,5 @@
 name: generic_vector_tools
-description: A starting point for Dart libraries or applications.
+description: A set of tools for using generic vectors
 version: 0.0.1
 author: Ben Sheron <benmosheron@gmail.com>
 #homepage: https://www.example.com

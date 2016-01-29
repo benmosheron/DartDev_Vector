@@ -119,8 +119,6 @@ class M {
   // Operator Overloads //
   //--------------------//
 
-  // Note -
-
   operator [](int i) => _m[i];
   operator []=(int i, V v) => _m[i] = v;
 
