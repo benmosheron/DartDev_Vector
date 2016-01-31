@@ -27,9 +27,15 @@ class V<T> {
   /// Number of elements (1st dimension)
   int get length => list.length;
 
-  /// magnitude of the vector, only valid for numbers (but will try anyway)
+  /// magnitude of the vector, only valid for number T (but will try anyway)
   double get magnitude =>
       sqrt(list.map((e) => e * e).fold(0.0, (p, n) => p + n));
+
+  /// return this vector normalised. If vector has magnitude zero, will return zero vector.
+  V get unit {
+    if(magnitude == 0.0) return new V.zero(length);
+    return this / magnitude;
+  }
 
   //--------------//
   // Constructors //
@@ -78,6 +84,7 @@ class V<T> {
     return s;
   }
 
+  /// Create a new vector by applying a function over every set of element pairs f(v1_i, v2_i)
   V zip(V v, Function f) {
     if (this.length !=
         v.length) throw ("Vectors have different lengths: [${this.length}], [${v.length}].");
@@ -88,18 +95,22 @@ class V<T> {
     return (_interimV);
   }
 
+  /// Multiply two vectors element-wise.
   V elementWiseMultiply(V v) {
     return (this.zip(v, (v1, v2) => v1 * v2));
   }
 
+  /// Divide two vectors element-wise
   V elementWiseDivide(V v) {
     return (this.zip(v, (v1, v2) => v1 / v2));
   }
 
+  /// Round every element using the element's .round() method
   V round() {
     return (new V(list.map((e) => e.round()).toList()));
   }
 
+  /// Print the vector to console. Returns printed string.
   String printVector({bool round: false}) {
     String row;
     if (round) {
@@ -112,7 +123,7 @@ class V<T> {
     return row;
   }
 
-  /// Create matrix of function results applied over two vectors
+  /// Create matrix (V<V>) of function results applied every set of element pairs f(v1_i, v2_j)
   V resolve(V v2, Function f) {
     // R = { f(t0, v0), f(t0, v1) }
     //     { f(t1, v0), f(t1, v1) }
@@ -121,6 +132,7 @@ class V<T> {
         .toList()));
   }
 
+  /// Apply a function to every element, returning the results as a new vector
   V mapF(Function f) {
     return new V(elements.map((e) => f(e)).toList());
   }

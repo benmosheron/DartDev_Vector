@@ -53,21 +53,21 @@ void main() {
       _expectTrue(v1 == v2);
     });
 
-    test('Test magnitude', () {
+    test('Test unit', () {
       V2 v1 = new V2.int(3, 4);
       _expectTrue(v1.unit == new V2(3.0 / 5.0, 4.0 / 5.0));
     });
 
-    test('Test magnitude of zero', () {
+    test('Test unit of zero', () {
       _expectTrue(zeroVector2.unit == new V2.zero());
     });
 
-    test('Test Unit', () {
+    test('Test magnitude', () {
       V2 v1 = new V2.int(3, 4);
       _expectTrue(v1.magnitude == 5.0);
     });
 
-    test('Test Unit of zero', () {
+    test('Test magnitude of zero', () {
       _expectTrue(zeroVector2.magnitude == 0.0);
     });
   });
@@ -264,6 +264,12 @@ void main() {
       _expectTrue(
           new V([1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0]).magnitude ==
               3.0);
+    });
+
+    test('Test unit                                      ', () {
+      _expectTrue(new V([1.0, 0.0]).unit == new V([1.0, 0.0]));
+      _expectTrue(new V([4.0, 3.0]).unit == new V([4.0 / 5.0, 3.0 / 5.0]));
+      _expectTrue(new V.zero(3).unit == new V.zero(3));
     });
 
     test('Test element wise multiply                     ', () {
