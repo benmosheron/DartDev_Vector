@@ -462,6 +462,20 @@ void main() {
       _expectTrue(r[0] == new V2.both(5.0));
       _expectTrue(r[1] == new V2.both(6.0));
     });
+
+    test('Test magnitude double       ', () {
+      V v1 = new V.generic(2);
+      expect(() => v1.magnitude, throws);
+      v1[0] = 3.0;
+      expect(() => v1.magnitude, throws);
+      v1[1] = 4.0;
+      _expectTrue(v1.magnitude == 5.0);
+    });
+
+    test('Test magnitude throws       ', () {
+      V<V> v1 = new V<V>([oneVector, oneVector * 2.0]);
+      expect(() => v1.magnitude, throws);
+    });
   });
 
   group('M', () {

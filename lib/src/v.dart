@@ -21,10 +21,13 @@ class V<T> {
   // Properties //
   //------------//
 
+  /// Get the elements as a List<T>. Use for access to dart collection methods.
   List<T> get elements => list;
 
+  /// Number of elements (1st dimension)
   int get length => list.length;
 
+  /// magnitude of the vector, only valid for numbers (but will try anyway)
   double get magnitude =>
       sqrt(list.map((e) => e * e).fold(0.0, (p, n) => p + n));
 
@@ -32,19 +35,24 @@ class V<T> {
   // Constructors //
   //--------------//
 
+  /// Create a new vector from a list of elements
   V(List<T> vals) {
     if (vals is! List) throw new Exception('Vector input must be a List');
     list = vals;
   }
 
+  /// Create a new vector from a filled list of the same value (generic)
   V.all(int size, T val) {
     list = new List<T>.filled(size, val);
   }
 
+  /// Create a vector of 0.0s
   V.zero(int size) : this.all(size, 0.0 as T);
 
+  /// Create a vector of 1.0s
   V.one(int size) : this.all(size, 1.0 as T);
 
+  /// Create a vector of random doubles [0 to 1]
   V.random(int size) {
     list = new List<T>();
     for (int i = 0; i < size; i++) {
@@ -52,6 +60,8 @@ class V<T> {
     }
   }
 
+  /// Create a vector of a generic type. Once an element has been set,
+  /// only elements of the same time can be added.
   V.generic(int _length) {
     _generic = true;
     list = new List(_length);
