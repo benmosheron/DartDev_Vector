@@ -164,8 +164,14 @@ class V<T> {
     }
   }
 
+  /// Easy access to List.every()
   bool every(Function f){
     return(this.list.every((e) => f(e)));
+  }
+
+  /// Easy access to List.any()
+  bool any(Function f){
+    return(this.list.any((e) => f(e)));
   }
 
   //--------------------//

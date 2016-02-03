@@ -15,4 +15,4 @@
 ## 1.0.2
 
 - Added negate methods to V and M
-- Added sum() and every()
+- Added sum(), sumRecursive() and every() to V and M

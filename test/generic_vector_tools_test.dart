@@ -513,6 +513,12 @@ void main() {
     test('Test every                                     ', () {
       V<V> v1 = new V<V>([oneVector, oneVector]);
       _expectTrue(v1.every((e) => e is V<double>));
+      _expectTrue(v1.every((e) => e==oneVector));
+    });
+
+    test('Test any                                       ', () {
+      V<V> v1 = new V<V>([oneVector, oneVector * 2.0]);
+      _expectTrue(v1.any((e) => e == oneVector * 2.0));
     });
   });
 
