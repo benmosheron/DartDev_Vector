@@ -33,7 +33,7 @@ class V<T> {
 
   /// return this vector normalised. If vector has magnitude zero, will return zero vector.
   V get unit {
-    if(magnitude == 0.0) return new V.zero(length);
+    if (magnitude == 0.0) return new V.zero(length);
     return this / magnitude;
   }
 
@@ -138,40 +138,38 @@ class V<T> {
   }
 
   /// Return a vector with negated elements. First looks for a .negate() method on each element [(e) => e.negate()], then tries [(e) => -e].
-  V negate(){
-    return(_negate(this));
+  V negate() {
+    return (_negate(this));
   }
 
   /// Return the sum of elements. Uses the + operator overload on each element.
-  dynamic sum(){
+  dynamic sum() {
     var x = this[0];
-    for(int i = 1; i<length; i++){
+    for (int i = 1; i < length; i++) {
       x += this[i];
     }
     return x;
   }
 
   /// Return the sum of elements. Uses the + operator overload on each element, unless element is V, in which case calls sum() of that vector.
-  dynamic sumRecursive(){
-
+  dynamic sumRecursive() {
     // Treat all elements the same to hopefully avoid type shenanigans
-    if(this[0] is V){
+    if (this[0] is V) {
       // Elements are vectors, call sumRecursive on each element
-      return(this.mapF((e) => e.sumRecursive()).sum());
-    }
-    else{
-      return this.sum();   
+      return (this.mapF((e) => e.sumRecursive()).sum());
+    } else {
+      return this.sum();
     }
   }
 
   /// Easy access to List.every()
-  bool every(Function f){
-    return(this.list.every((e) => f(e)));
+  bool every(Function f) {
+    return (this.list.every((e) => f(e)));
   }
 
   /// Easy access to List.any()
-  bool any(Function f){
-    return(this.list.any((e) => f(e)));
+  bool any(Function f) {
+    return (this.list.any((e) => f(e)));
   }
 
   //--------------------//
@@ -259,15 +257,14 @@ class V<T> {
     return (this.zip(v, (v1, v2) => v1 - v2));
   }
 
-  dynamic _negate(V v){
+  dynamic _negate(V v) {
     // If the elements are themselves vectors, call their negate methods
-    if(v[0] is V){
+    if (v[0] is V) {
       // Assume if element [0] is...
-      return(v.mapF((e) => e.negate()));
-    }
-    else{
+      return (v.mapF((e) => e.negate()));
+    } else {
       // otherwise it's probably a number
-      return(v.mapF((e) => -e));
+      return (v.mapF((e) => -e));
     }
   }
 

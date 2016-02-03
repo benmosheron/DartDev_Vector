@@ -115,8 +115,19 @@ class M {
     return (new M(_m.map((v) => v.mapF(f)).toList()));
   }
 
-  M negate(){
+  M negate() {
     return (new M(this.rows.map((r) => r.negate()).toList()));
+  }
+
+  /// Return the sum of elements. Uses the + operator overload on each element.
+  dynamic sum() {
+    var x = this[0][0];
+    for (int i = 0; i < nRows; i++) {
+      for (int j = 0; j < nCols; j++) {
+        if (!(i == 0 && j == 0)) x += this[i][j];
+      }
+    }
+    return x;
   }
 
   //--------------------//

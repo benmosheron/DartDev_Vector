@@ -507,13 +507,14 @@ void main() {
       V<V> v11 = new V<V>([v1, v1 * 2.0]);
       // sumRecursive of v11 = sum(sum(v11[0]), sum(v11[1])) = ((1+1) + (2+2)) +((2+2) + (4+4))
       _expectTrue(v11.sumRecursive() == 18.0);
-      _expectTrue(new V([v11, v11 * 2, v11 * 3]).sumRecursive() == 18.0 + (18.0 * 2.0) + (18.0 * 3.0));
+      _expectTrue(new V([v11, v11 * 2, v11 * 3]).sumRecursive() ==
+          18.0 + (18.0 * 2.0) + (18.0 * 3.0));
     });
 
     test('Test every                                     ', () {
       V<V> v1 = new V<V>([oneVector, oneVector]);
       _expectTrue(v1.every((e) => e is V<double>));
-      _expectTrue(v1.every((e) => e==oneVector));
+      _expectTrue(v1.every((e) => e == oneVector));
     });
 
     test('Test any                                       ', () {
@@ -685,6 +686,11 @@ void main() {
       M E1 = new M.fromArray(2, 2, [-1.0, -2.0, -3.0, -4.0]);
 
       _expectMatrixEquality(M2, E1);
+    });
+
+    test('Test sum                                       ', () {
+      M M1 = new M.fromArray(2, 2, [1.0, 2.0, 3.0, 4.0]);
+      _expectTrue(M1.sum() == 10.0);
     });
   });
 
