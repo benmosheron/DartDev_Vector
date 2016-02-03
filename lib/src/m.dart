@@ -115,6 +115,10 @@ class M {
     return (new M(_m.map((v) => v.mapF(f)).toList()));
   }
 
+  M negate(){
+    return (new M(this.rows.map((r) => r.negate()).toList()));
+  }
+
   //--------------------//
   // Operator Overloads //
   //--------------------//

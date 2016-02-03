@@ -348,6 +348,11 @@ void main() {
       }
     });
 
+    test('Test sum                                       ', () {
+      V v1 = new V([0.0, 1.0, 2.0]);
+      _expectTrue(v1.sum() == 3.0);
+    });
+
     // template
     // test('Test ', () {
     //   expect(, isTrue);
@@ -481,6 +486,33 @@ void main() {
     test('Test magnitude throws       ', () {
       V<V> v1 = new V<V>([oneVector, oneVector * 2.0]);
       expect(() => v1.magnitude, throws);
+    });
+
+    test('Test negate                 ', () {
+      V<V> v1 = new V<V>([oneVector, oneVector * 2.0]);
+      V<V> expected = new V<V>([new V.all(2, -1.0), new V.all(2, -2.0)]);
+      V v2 = v1.negate();
+      _expectTrue(v2 == expected);
+    });
+
+    test('Test sum                                       ', () {
+      V<V> v1 = new V<V>([oneVector, oneVector * 2.0]);
+      // sum of v1 = v1[0] + v1[1] = (1, 1) + (2, 2)
+      V<double> expected = new V<double>([3.0, 3.0]);
+      _expectTrue(v1.sum() == expected);
+    });
+
+    test('Test sumRecursive                             ', () {
+      V<V> v1 = new V<V>([oneVector, oneVector * 2.0]);
+      V<V> v11 = new V<V>([v1, v1 * 2.0]);
+      // sumRecursive of v11 = sum(sum(v11[0]), sum(v11[1])) = ((1+1) + (2+2)) +((2+2) + (4+4))
+      _expectTrue(v11.sumRecursive() == 18.0);
+      _expectTrue(new V([v11, v11 * 2, v11 * 3]).sumRecursive() == 18.0 + (18.0 * 2.0) + (18.0 * 3.0));
+    });
+
+    test('Test every                                     ', () {
+      V<V> v1 = new V<V>([oneVector, oneVector]);
+      _expectTrue(v1.every((e) => e is V<double>));
     });
   });
 
@@ -637,6 +669,16 @@ void main() {
       M E1 = new M.fromArray(2, 2, [10.0, 20.0, 30.0, 40.0]);
 
       _expectMatrixEquality(M1, E1);
+    });
+
+    test('Test negate                                    ', () {
+      M M1 = new M.fromArray(2, 2, [1.0, 2.0, 3.0, 4.0]);
+
+      M M2 = M1.negate();
+
+      M E1 = new M.fromArray(2, 2, [-1.0, -2.0, -3.0, -4.0]);
+
+      _expectMatrixEquality(M2, E1);
     });
   });
 
