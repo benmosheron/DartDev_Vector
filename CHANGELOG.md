@@ -16,3 +16,8 @@
 
 - Added negate methods to V and M
 - Added sum(), sumRecursive(), any() and every() to V
+
+## 1.0.3
+
+- selfResolve
+- split unit tests into separate files
