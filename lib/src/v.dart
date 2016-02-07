@@ -43,7 +43,17 @@ class V<T> {
 
   /// Create a new vector from a list of elements
   V(List<T> vals) {
-    if (vals is! List) throw new Exception('Vector input must be a List');
+
+    if (vals is! List){
+      try
+      {
+        vals = vals.toList();
+        if(vals is! List) throw "Converting vector input to list, failed to create list";
+      }
+      catch (e){
+         throw "Vector input must be a List, or have a toList() method to call";
+      }
+    } 
     list = vals;
   }
 

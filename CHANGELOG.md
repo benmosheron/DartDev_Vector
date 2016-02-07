@@ -19,5 +19,6 @@
 
 ## 1.0.3
 
-- selfResolve
-- split unit tests into separate files
+- SelfResolve
+- Split unit tests into separate files
+- Try and convert basic constructor input to list

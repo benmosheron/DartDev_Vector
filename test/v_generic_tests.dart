@@ -181,14 +181,14 @@ void run(){
       expectTrue(v2 == expected);
     });
 
-    test('Test sum                                       ', () {
+    test('Test sum                    ', () {
       V<V> v1 = new V<V>([oneVector, oneVector * 2.0]);
       // sum of v1 = v1[0] + v1[1] = (1, 1) + (2, 2)
       V<double> expected = new V<double>([3.0, 3.0]);
       expectTrue(v1.sum() == expected);
     });
 
-    test('Test sumRecursive                             ', () {
+    test('Test sumRecursive           ', () {
       V<V> v1 = new V<V>([oneVector, oneVector * 2.0]);
       V<V> v11 = new V<V>([v1, v1 * 2.0]);
       // sumRecursive of v11 = sum(sum(v11[0]), sum(v11[1])) = ((1+1) + (2+2)) +((2+2) + (4+4))
@@ -197,15 +197,26 @@ void run(){
           18.0 + (18.0 * 2.0) + (18.0 * 3.0));
     });
 
-    test('Test every                                     ', () {
+    test('Test every                  ', () {
       V<V> v1 = new V<V>([oneVector, oneVector]);
       expectTrue(v1.every((e) => e is V<double>));
       expectTrue(v1.every((e) => e == oneVector));
     });
 
-    test('Test any                                       ', () {
+    test('Test any                    ', () {
       V<V> v1 = new V<V>([oneVector, oneVector * 2.0]);
       expectTrue(v1.any((e) => e == oneVector * 2.0));
+    });
+
+    test('Test inputs not list        ', () {
+      var list = [1, 2];
+      var hasToList = list.map((e) => e + 1);
+
+      V v1 = new V(list);
+      V v2= new V(hasToList);
+
+      expectTrue(v1 is V);
+      expectTrue(v2 is V);
     });
   });  
 }
