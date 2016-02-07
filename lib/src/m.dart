@@ -16,8 +16,10 @@ class M {
   // Properties //
   //------------//
 
+  /// List of rows
   List<V> get rows => _m;
 
+  /// List of columns
   List<V> get columns {
     var c = new List<V>(nCols);
     for (int i = 0; i < nCols; i++) {
@@ -26,10 +28,13 @@ class M {
     return (c);
   }
 
+  /// The number of rows
   int get nRows => _m.length;
 
+  /// the number of columns
   int get nCols => _m[0].length;
 
+  /// Diagonal elements of the matrix
   V get diagonal {
     List l = new List();
     // There will be a nicer way to do this, but I can't think of it.
@@ -43,27 +48,41 @@ class M {
   // Constructors //
   //--------------//
 
+  /// New matrix from a list of vectors representing the rows
   M(List<V> vals) {
     _m = vals;
   }
 
+  /// New matrix from a vector of rows.
   M.fromV(V vals) : this(vals.list);
 
-  M.all(int n, int m, double val) {
+  /// New n*m matrix with all elements set to the same values
+  M.all(int n, int m, dynamic val) {
     _m = new List<V>(n);
     for (int i = 0; i < n; i++) {
       _m[i] = new V.all(m, val);
     }
   }
 
+  /// New n*m matrix with all elements set to 0.0
   M.zero(int n, int m) : this.all(n, m, 0.0);
 
+  /// New n*m matrix with all elements set to 1.0
   M.one(int n, int m) : this.all(n, m, 1.0);
 
+  /// New n*m matrix with all elements set to a random number between 0 and 1
   M.random(int n, int m) {
     _m = new List<V>(n);
     for (int i = 0; i < n; i++) {
       _m[i] = new V.random(m);
+    }
+  }
+
+  /// New n*m matrix of generic elements
+  M.generic(int n, int m) {
+    _m = new List<V>(n);
+    for (int i = 0; i < n; i++) {
+      _m[i] = new V.generic(m);
     }
   }
 
@@ -84,8 +103,9 @@ class M {
   // Methods //
   //---------//
 
+  /// Combine two matrices by applying a function f to each element-pair.
   M zip(M A, Function f) {
-    M _interimM = new M.zero(_m.length, this[0].length);
+    M _interimM = new M.generic(_m.length, this[0].length);
 
     for (int i = 0; i < _m.length; i++) {
       _interimM[i] = f(this[i], A[i]);
@@ -94,14 +114,17 @@ class M {
     return (_interimM);
   }
 
+  /// Multiple this matrix with another, element-wise.
   M elementWiseMultiply(M A) {
     return (zip(A, (t, a) => t.elementWiseMultiply(a)));
   }
 
+  /// Divide this matrix by another, element-wise.
   M elementWiseDivide(M A) {
     return (zip(A, (t, a) => t.elementWiseDivide(a)));
   }
 
+  /// Print the matrix to console
   String printMatrix({bool round: false}) {
     String s = "";
     for (int i = 0; i < _m.length; i++) {
@@ -111,10 +134,12 @@ class M {
     return s;
   }
 
+  /// Apply a function to every element, return the results as a new matrix.
   M mapF(Function f) {
     return (new M(_m.map((v) => v.mapF(f)).toList()));
   }
 
+  /// Call negate() of every row.
   M negate() {
     return (new M(this.rows.map((r) => r.negate()).toList()));
   }

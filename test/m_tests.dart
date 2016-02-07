@@ -179,5 +179,12 @@ void run(){
       M M1 = new M.fromArray(2, 2, [1.0, 2.0, 3.0, 4.0]);
       expectTrue(M1.sum() == 10.0);
     });
+
+    test('Test zip                                       ', () {
+      M M1 = new M.fromArray(2, 2, [1.0, 2.0, 3.0, 4.0]);
+      M M2 = new M.fromArray(2, 2, [4.0, 3.0, 2.0, 1.0]);
+      M E = new M.all(2, 3, 5.0);
+      expectTrue(M1.zip(M2, (e1, e2) => e1 + e2) == E);
+    });   
   });  
 }

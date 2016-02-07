@@ -22,3 +22,6 @@
 - SelfResolve
 - Split unit tests into separate files
 - Try and convert basic constructor input to list
+- docs for M
+- generic constructor for m and unit tests
+- zip uses generic constructor

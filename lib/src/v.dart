@@ -143,7 +143,8 @@ class V<T> {
         .toList()));
   }
 
-
+  /// Create matrix (V<V>) of function results applied every set of element pairs f(v_i, v_j).
+  /// Equivalent to to (v *[outer product] v).mapF(f)
   V selfResolve(Function f) {
     // R = { f(v1_0, v1_0), f(v1_0, v1_1) }
     //     { f(v1_1, v1_0), f(v1_1, v1_1) }
