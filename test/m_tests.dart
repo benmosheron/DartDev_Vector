@@ -8,8 +8,7 @@ import 'package:test/test.dart';
 
 import 'test_utils.dart';
 
-
-void run(){
+void run() {
   group('M', () {
     test('Test equality                                  ', () {
       M M1 = new M.zero(3, 3);
@@ -185,6 +184,6 @@ void run(){
       M M2 = new M.fromArray(2, 2, [4.0, 3.0, 2.0, 1.0]);
       M E = new M.all(2, 3, 5.0);
       expectTrue(M1.zip(M2, (e1, e2) => e1 + e2) == E);
-    });   
-  });  
+    });
+  });
 }

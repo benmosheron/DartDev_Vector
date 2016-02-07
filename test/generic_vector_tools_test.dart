@@ -16,7 +16,7 @@ void main(List<String> args) {
   //   >dart "C:\DartDev\Vector\test\Vector_test.dart"
 
   final ArgParser p = new ArgParser();
-  p.addFlag("disablePrintTests", abbr:"p");
+  p.addFlag("disablePrintTests", abbr: "p");
 
   var argResults = p.parse(args);
 
@@ -24,10 +24,9 @@ void main(List<String> args) {
   runTests("V", v_tests.run);
   runTests("V - Generics", vg_tests.run);
   runTests("M", m_tests.run);
-  if(argResults["disablePrintTests"]){
+  if (argResults["disablePrintTests"]) {
     print('Skipping Print tests');
-  }
-  else{
+  } else {
     runTests("Printing", print_tests.run);
   }
 
@@ -39,7 +38,7 @@ void main(List<String> args) {
   // });
 }
 
-void runTests(String name, Function t){
+void runTests(String name, Function t) {
   print("Running tests: $name");
   t();
 }

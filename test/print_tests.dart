@@ -8,7 +8,7 @@ import 'package:test/test.dart';
 
 import 'test_utils.dart';
 
-void run(){
+void run() {
   group('Test printing', () {
     test('Test V.printVector()', () {
       V d = new V([0.0, 1.0]);
@@ -25,16 +25,15 @@ void run(){
       print("");
       expectTrue(DD.printVector() ==
           '(((0.0, 1.0), (1.0, 2.0), (2.0, 3.0)),'
-              ' ((1.0, 2.0), (2.0, 3.0), (3.0, 4.0)),'
-              ' ((2.0, 3.0), (3.0, 4.0), (4.0, 5.0)))');
+          ' ((1.0, 2.0), (2.0, 3.0), (3.0, 4.0)),'
+          ' ((2.0, 3.0), (3.0, 4.0), (4.0, 5.0)))');
       print("");
     });
 
     test('Test M.printVector()', () {
       M O = new M.fromArray(2, 3, [1.5, 2.0, 3.0, 4.0, 5.0, 6.0]);
       print("");
-      expectStringsEqual(
-          O.printMatrix(), '(1.5, 2.0, 3.0)\r\n(4.0, 5.0, 6.0)');
+      expectStringsEqual(O.printMatrix(), '(1.5, 2.0, 3.0)\r\n(4.0, 5.0, 6.0)');
       print("");
       expectStringsEqual(O.printMatrix(round: true), '(2, 2, 3)\r\n(4, 5, 6)');
       print("");

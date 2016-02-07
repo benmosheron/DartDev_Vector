@@ -8,7 +8,7 @@ import 'package:test/test.dart';
 
 import 'test_utils.dart';
 
-void run(){
+void run() {
   group('V Generics', () {
     V oneVector;
     V2 oneV2;
@@ -213,10 +213,10 @@ void run(){
       var hasToList = list.map((e) => e + 1);
 
       V v1 = new V(list);
-      V v2= new V(hasToList);
+      V v2 = new V(hasToList);
 
       expectTrue(v1 is V);
       expectTrue(v2 is V);
     });
-  });  
+  });
 }

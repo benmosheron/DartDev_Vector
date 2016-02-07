@@ -8,7 +8,7 @@ import 'package:test/test.dart';
 
 import 'test_utils.dart';
 
-void run(){
+void run() {
   group('V2', () {
     V2 zeroVector2;
     V2 oneVector2;
