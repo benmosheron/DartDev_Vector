@@ -29,7 +29,7 @@ void expectTrue(bool b) {
   expect(b, isTrue);
 }
 
-bool floatCompare(double d1, double d2, {double tol: 0.000000001}){
+bool floatCompare(double d1, double d2, {double tol: 0.000000001}) {
   var d = d1 - d2;
   if (d < 0) d = -d;
   if (d <= tol) return true;

@@ -84,7 +84,7 @@ class V<T> {
     }
     double scale = magnitude / this.magnitude;
 
-    list = list.map((e) => e* scale);
+    list = list.map((e) => e * scale);
   }
 
   /// Create a vector of a generic type. Once an element has been set,

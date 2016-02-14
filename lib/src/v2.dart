@@ -7,11 +7,11 @@ import 'dart:math';
 import 'v.dart';
 
 /// 2-D Vector
-class V2 extends V<double>{
+class V2 extends V<double> {
   double get x => super[0];
   double get y => super[1];
 
-  static List<num> GetFixedList(num x, num y){
+  static List<num> GetFixedList(num x, num y) {
     List<num> _l = new List<num>(2);
     _l[0] = x;
     _l[1] = y;
@@ -26,7 +26,7 @@ class V2 extends V<double>{
 
   V2.zero() : this.both(0.0);
 
-  V2.one() :this.both(1.0);
+  V2.one() : this.both(1.0);
 
   V2.random(double magnitude) : super.randomNormalised(2, magnitude);
 

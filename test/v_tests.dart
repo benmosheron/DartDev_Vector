@@ -52,8 +52,8 @@ void run() {
     test('Test random normalised constructor             ', () {
       var randoms = new List<V>();
       var magnitudes = new List<double>();
-      for(int i = 0; i = 100; i++){
-        for(int j = 1; j = 10; j++){
+      for (int i = 0; i = 100; i++) {
+        for (int j = 1; j = 10; j++) {
           magnitudes.add(i.toDouble() + 1.0);
           randoms.add(new V.randomNormalised(j, magnitudes[i]));
           expectTrue(floatCompare(randoms[i].magnitude, magnitudes[i]));
