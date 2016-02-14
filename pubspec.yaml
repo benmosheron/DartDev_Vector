@@ -1,6 +1,6 @@
 name: generic_vector_tools
 description: A set of tools for using generic vectors
-version: 1.0.3
+version: 1.0.4
 author: Ben Sheron <benmosheron@gmail.com>
 homepage: https://github.com/benmosheron/DartDev_Vector.git
 
