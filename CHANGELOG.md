@@ -29,4 +29,4 @@
 ## 1.0.4
 
 - V2 now extends V
-- explicely set V list sizes where relevant
+- explicitly set V list sizes where relevant
