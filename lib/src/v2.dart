@@ -4,42 +4,31 @@
 library generic_vector_tools.v2;
 
 import 'dart:math';
+import 'v.dart';
 
 /// 2-D Vector
-class V2 {
-  double x;
-  double y;
-  static final Random rand = new Random();
+class V2 extends V<double>{
+  double get x => super[0];
+  double get y => super[1];
 
-  V2(this.x, this.y);
-
-  V2.both(double val) {
-    x = val;
-    y = val;
+  static List<num> GetFixedList(num x, num y){
+    List<num> _l = new List<num>(2);
+    _l[0] = x;
+    _l[1] = y;
+    return _l;
   }
 
-  V2.int(int x, int y) {
-    this.x = x.toDouble();
-    this.y = y.toDouble();
-  }
+  V2(num x, num y) : super(GetFixedList(x, y));
 
-  V2.zero() {
-    x = 0.0;
-    y = 0.0;
-  }
+  V2.both(num val) : super(GetFixedList(val, val));
 
-  V2.one() {
-    x = 1.0;
-    y = 1.0;
-  }
+  V2.int(int x, int y) : this(x, y);
 
-  V2.random(double magnitude) {
-    x = (rand.nextDouble() * 2) - 1;
-    y = (rand.nextDouble() * 2) - 1;
-    double scale = magnitude / this.magnitude;
-    x *= scale;
-    y *= scale;
-  }
+  V2.zero() : this.both(0.0);
+
+  V2.one() :this.both(1.0);
+
+  V2.random(double magnitude) : super.randomNormalised(2, magnitude);
 
   double get magnitude {
     return (sqrt((x * x) + (y * y)));

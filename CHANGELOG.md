@@ -25,3 +25,8 @@
 - docs for M
 - generic constructor for m and unit tests
 - zip uses generic constructor
+
+## 1.0.4
+
+- V2 now extends V
+- explicely set V list sizes where relevant

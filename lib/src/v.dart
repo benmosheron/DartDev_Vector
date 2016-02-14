@@ -68,10 +68,23 @@ class V<T> {
 
   /// Create a vector of random doubles [0 to 1]
   V.random(int size) {
-    list = new List<T>();
+    list = new List<T>(size);
     for (int i = 0; i < size; i++) {
-      list.add(rand.nextDouble() as T);
+      list[i] = rand.nextDouble() as T;
     }
+  }
+
+  /// Create a vector of random doubles [-1 to 1], normalised to a supplied magnitude
+  V.randomNormalised(int size, double magnitude) {
+    list = new List<T>(size);
+
+    // Get an array of uniform random numbers
+    for (int i = 0; i < size; i++) {
+      list[i] = (rand.nextDouble() * 2) - 1 as T;
+    }
+    double scale = magnitude / this.magnitude;
+
+    list = list.map((e) => e* scale);
   }
 
   /// Create a vector of a generic type. Once an element has been set,

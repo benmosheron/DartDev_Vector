@@ -69,5 +69,23 @@ void run() {
     test('Test magnitude of zero', () {
       expectTrue(zeroVector2.magnitude == 0.0);
     });
+
+    test('Test random', () {
+      // generate a load of random V2s
+      var randoms = new List<V2>();
+      var magnitudes = new List<double>();
+      for(int i = 0; i = 100; i++){
+        magnitudes.add(i.toDouble() + 1.0);
+        randoms.add(new V2.random(magnitudes[i]));
+        expectTrue(floatCompare(randoms[i].magnitude, magnitudes[i]));
+      }
+    });
+
+    test('Test exactly 2 elements', () {
+      V2 v = new V2(0,0);
+      V2 vb = new V2.both(0);
+      expect(() => v.list.add(0.0), throws);
+      expect(() => vb.list.add(0.0), throws);
+    });
   });
 }
