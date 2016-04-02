@@ -205,7 +205,7 @@ class V<T> {
     if (value is! T) throw new Exception(
         'Vector type mismatch value $value is not of type $T');
 
-      list[i] = value;
+    list[i] = value;
   }
 
   operator +(var x) {

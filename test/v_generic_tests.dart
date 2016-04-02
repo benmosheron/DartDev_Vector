@@ -36,9 +36,10 @@ void run() {
 
     test('Test adding elements to generic vector', () {
       V spooky = new V.generic(3);
-      
+
       spooky[0] = 1; // add an int
-      spooky[1] = 2.3; // need to be able to do this, because when compiled to javascript, 1.0 (double) turns to 1 (int)
+      spooky[1] =
+          2.3; // need to be able to do this, because when compiled to javascript, 1.0 (double) turns to 1 (int)
       spooky[2] = "sadly it means we can do this too";
     });
 
