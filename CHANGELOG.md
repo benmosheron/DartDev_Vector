@@ -30,3 +30,7 @@
 
 - V2 now extends V
 - explicitly set V list sizes where relevant
+
+## 1.0.5
+
+- removed the type checking for V.generic, it caused issues when compiled to js

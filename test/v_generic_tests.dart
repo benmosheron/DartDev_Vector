@@ -29,17 +29,17 @@ void run() {
     });
 
     test('Test strong typing on ass.  ', () {
-      // thats assign ;)
+      // that's assign ;)
       V<int> ints = new V<int>([1, 2, 3]);
       expect(() => ints[1] = new V2.zero(), throws);
     });
 
-    test('Test strong typing generic  ', () {
-      // thats assign ;)
+    test('Test adding elements to generic vector', () {
       V spooky = new V.generic(3);
-      // Set the type
-      spooky[0] = 1; // sets type to int
-      expect(() => spooky[1] = new V2.zero(), throws);
+      
+      spooky[0] = 1; // add an int
+      spooky[1] = 2.3; // need to be able to do this, because when compiled to javascript, 1.0 (double) turns to 1 (int)
+      spooky[2] = "sadly it means we can do this too";
     });
 
     test('Test equality               ', () {

@@ -10,13 +10,6 @@ class V<T> {
   static final Random rand = new Random();
   List<T> list;
 
-  // Trying to keep vectors strongly typed.
-  // Generic vectors have _generic = true
-  // try and keep these all the same type by controlling assignments
-  bool _generic = false;
-  // Set this to the index of the first assignment. This feels like a bit of a hack.
-  int _genericSet = -1;
-
   //------------//
   // Properties //
   //------------//
@@ -87,10 +80,8 @@ class V<T> {
     list = list.map((e) => e * scale);
   }
 
-  /// Create a vector of a generic type. Once an element has been set,
-  /// only elements of the same time can be added.
+  /// Create a vector of a generic type.
   V.generic(int _length) {
-    _generic = true;
     list = new List(_length);
   }
 
@@ -213,23 +204,8 @@ class V<T> {
   operator []=(int i, var value) {
     if (value is! T) throw new Exception(
         'Vector type mismatch value $value is not of type $T');
-    if (!_generic) {
-      // Just set it
+
       list[i] = value;
-    } else {
-      // It's generic D:
-      if (_genericSet == -1) {
-        // type of vector has not been set, so set it
-        list[i] = value;
-        _genericSet = i;
-      } else {
-        // type of vector has been set, so make sure it's the same
-        if (value.runtimeType !=
-            this[_genericSet].runtimeType) throw new Exception(
-            'Vector type mismatch value $value is not of type $T');
-        list[i] = value;
-      }
-    }
   }
 
   operator +(var x) {
