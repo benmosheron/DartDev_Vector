@@ -53,11 +53,11 @@ void run() {
 
     test('Test random normalised constructor             ', () {
       Random random = new Random();
-      
+
       var magnitudes = new List<double>();
 
       int N = 10;
-      var randoms = new M.generic(10,10);
+      var randoms = new M.generic(10, 10);
       // Generate N random magnitudes
       for (int i = 0; i < N; i++) {
         magnitudes.add(random.nextDouble() * 100.0);
