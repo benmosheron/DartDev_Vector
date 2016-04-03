@@ -77,7 +77,7 @@ class V<T> {
     }
     double scale = magnitude / this.magnitude;
 
-    list = list.map((e) => e * scale);
+    list = list.map((e) => e * scale).toList();
   }
 
   /// Create a vector of a generic type.
@@ -126,7 +126,7 @@ class V<T> {
   String printVector({bool round: false}) {
     String row;
     if (round) {
-      List _l = list.map((x) => x.round());
+      var _l = list.map((x) => x.round());
       row = _l.toString();
     } else {
       row = this.toString();

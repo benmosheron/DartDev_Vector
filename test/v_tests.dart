@@ -3,6 +3,8 @@
 
 library generic_vector_tools.v_tests;
 
+import 'dart:math';
+
 import 'package:generic_vector_tools/generic_vector_tools.dart';
 import 'package:test/test.dart';
 
@@ -50,13 +52,21 @@ void run() {
     });
 
     test('Test random normalised constructor             ', () {
-      var randoms = new List<V>();
+      Random random = new Random();
+      
       var magnitudes = new List<double>();
-      for (int i = 0; i = 100; i++) {
-        for (int j = 1; j = 10; j++) {
-          magnitudes.add(i.toDouble() + 1.0);
-          randoms.add(new V.randomNormalised(j, magnitudes[i]));
-          expectTrue(floatCompare(randoms[i].magnitude, magnitudes[i]));
+
+      int N = 10;
+      var randoms = new M.generic(10,10);
+      // Generate N random magnitudes
+      for (int i = 0; i < N; i++) {
+        magnitudes.add(random.nextDouble() * 100.0);
+        // For each magnitude, generate a vecor of length j
+        for (int j = 0; j < N; j++) {
+          randoms[i][j] = (new V.randomNormalised(j + 1, magnitudes[i]));
+
+          // The magnitude of the created vector should be as expected
+          expectTrue(floatCompare(magnitudes[i], randoms[i][j].magnitude));
         }
       }
     });

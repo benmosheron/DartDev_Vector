@@ -20,14 +20,14 @@ void main(List<String> args) {
 
   var argResults = p.parse(args);
 
-  runTests("V2", v2_tests.run);
+  // runTests("V2", v2_tests.run);
   runTests("V", v_tests.run);
-  runTests("V - Generics", vg_tests.run);
-  runTests("M", m_tests.run);
+  // runTests("V - Generics", vg_tests.run);
+  // runTests("M", m_tests.run);
   if (argResults["disablePrintTests"]) {
     print('Skipping Print tests');
   } else {
-    runTests("Printing", print_tests.run);
+    // runTests("Printing", print_tests.run);
   }
 
   // Template
