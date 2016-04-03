@@ -34,3 +34,7 @@
 ## 1.0.5
 
 - removed the type checking for V.generic, it caused issues when compiled to js
+
+## 1.0.6
+
+- fixed unit tests not working in checked mode

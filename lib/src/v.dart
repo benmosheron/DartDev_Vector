@@ -35,7 +35,7 @@ class V<T> {
   //--------------//
 
   /// Create a new vector from a list of elements
-  V(List<T> vals) {
+  V(var vals) {
     if (vals is! List) {
       try {
         vals = vals.toList();

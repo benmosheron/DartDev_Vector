@@ -11,18 +11,18 @@ class V2 extends V<double> {
   double get x => super[0];
   double get y => super[1];
 
-  static List<num> GetFixedList(num x, num y) {
-    List<num> _l = new List<num>(2);
+  static List<double> GetFixedList(double x, double y) {
+    List<double> _l = new List<double>(2);
     _l[0] = x;
     _l[1] = y;
     return _l;
   }
 
-  V2(num x, num y) : super(GetFixedList(x, y));
+  V2(double x, double y) : super(GetFixedList(x, y));
 
-  V2.both(num val) : super(GetFixedList(val, val));
+  V2.both(double val) : super(GetFixedList(val, val));
 
-  V2.int(int x, int y) : this(x, y);
+  V2.int(int x, int y) : this(x.toDouble(), y.toDouble());
 
   V2.zero() : this.both(0.0);
 
