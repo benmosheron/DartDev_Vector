@@ -8,7 +8,7 @@ import 'package:test/test.dart';
 
 import 'test_utils.dart';
 
-void run() {
+void main() {
   group('M', () {
     test('Test equality                                  ', () {
       M M1 = new M.zero(3, 3);

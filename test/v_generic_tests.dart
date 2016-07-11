@@ -8,7 +8,7 @@ import 'package:test/test.dart';
 
 import 'test_utils.dart';
 
-void run() {
+void main() {
   group('V Generics', () {
     V oneVector;
     V2 oneV2;

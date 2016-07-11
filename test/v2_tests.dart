@@ -8,7 +8,7 @@ import 'package:test/test.dart';
 
 import 'test_utils.dart';
 
-void run() {
+void main() {
   group('V2', () {
     V2 zeroVector2;
     V2 oneVector2;
@@ -31,6 +31,26 @@ void run() {
       V2 v2 = new V2(10.0, 0.0);
       double c1 = 8.0;
       double c2 = 4.0;
+
+      // (12, 3)
+      V2 v3 = v2 + v1;
+
+      // (96, 24)
+      V2 v4 = v3 * c1;
+
+      // (24, 6)
+      V2 v5 = v4 / c2;
+
+      // (23, 5)
+      V2 v6 = v5 - new V2.one();
+      expect(v6.x == 23.0 && v6.y == 5.0, isTrue);
+    });
+
+    test('Test integer operations', () {
+      V2 v1 = new V2(2.0, 3.0);
+      V2 v2 = new V2(10.0, 0.0);
+      int c1 = 8;
+      int c2 = 4;
 
       // (12, 3)
       V2 v3 = v2 + v1;
