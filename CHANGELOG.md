@@ -38,3 +38,9 @@
 ## 1.0.6
 
 - fixed unit tests not working in checked mode
+
+## 1.0.7
+
+- Unit tests make use of the test package (pub run test...) rather than
+a custom command.
+- More flexible V2 overloads.

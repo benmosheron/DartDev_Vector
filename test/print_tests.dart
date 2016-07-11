@@ -8,7 +8,7 @@ import 'package:test/test.dart';
 
 import 'test_utils.dart';
 
-void run() {
+void main() {
   group('Test printing', () {
     test('Test V.printVector()', () {
       V d = new V([0.0, 1.0]);

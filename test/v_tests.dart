@@ -10,7 +10,7 @@ import 'package:test/test.dart';
 
 import 'test_utils.dart';
 
-void run() {
+void main() {
   group('V', () {
     V zeroVector;
     V oneVector;
